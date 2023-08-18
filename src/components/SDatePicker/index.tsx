@@ -27,10 +27,11 @@ const SDatePicker = () => {
     }
     return [];
   };
-  const disabledMinute = (hour: number) => {
+  const disabledMinute = (day: number, hour: number) => {
+    const currentDay = dayjs().date();
     const currentHour = dayjs().hour();
     const currentMinute = dayjs().minute();
-    if (currentHour === hour) {
+    if (currentHour === hour && currentDay === day) {
       return initArray(60).slice(0, currentMinute);
     }
     return [];
@@ -40,7 +41,7 @@ const SDatePicker = () => {
     const hour = dayjs(date).hour();
     return {
       disabledHours: () => disabledHour(day),
-      disabledMinutes: () => disabledMinute(hour),
+      disabledMinutes: () => disabledMinute(day, hour),
     };
   };
   const disabledDate: RangePickerProps["disabledDate"] = (current) => {
