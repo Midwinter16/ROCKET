@@ -2,27 +2,25 @@
   "data": [
     {
       "id": 1,
-      "key": 1,
-      "name": "WTF",
-      "description": "PHP是世界上最好的语言",
-      "finished": false,
-      "tags": ["FAKE"]
+      "title": "JS是世界上最好的语言",
+      "description": "世界和平",
+      "createTime":1672520599000,
+      "deadline": 1672521599000,
+      "priority": "high",
+      "completed":1672521590000,
+      "remindTime": 1672428000000,
+      "labels": ["work", "important"]
     },
     {
       "id": 2,
-      "key": 2,
-      "name": "WTF",
-      "description": "JS是世界上最好的语言",
-      "finished": false,
-      "tags": ["TRUE"]
-    },
-    {
-      "id": 3,
-      "key": 3,
-      "name": "WTF",
-      "description": "8 点 30该下班了",
-      "finished": true,
-      "tags": ["TRUE"]
+      "title": "PHP 是世界上最好的语言",
+      "description": "世界和平",
+      "createTime":1672520599000,
+      "deadline": 1672521599000,
+      "completed":false,
+      "priority": "middle",
+      "remindTime": 1672428000000,
+      "labels": ["work", "important"]
     }
   ]
 }

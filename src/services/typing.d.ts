@@ -1,9 +1,13 @@
 declare namespace TYPE {
-  type TodoList = {
-    id?: number;
-    name?: string;
-    description?: string;
-    finished?: boolean;
-    tags?: string[];
-  };
+  interface Todo {
+    id: number;
+    title: string;
+    description: string;
+    createTime: number;
+    deadline: number;
+    priority: string;
+    completed: false | number;
+    remindTime: number;
+    labels: string[];
+  }
 }

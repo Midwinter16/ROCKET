@@ -1,31 +1,38 @@
-import { Drawer, Button, Space } from "sensd";
+import { Button, Drawer, Space } from "antd";
 
 interface EditableViewerProps {
-  visible: boolean,
-  setVisible: (visible: boolean) => void,
-  title: string
+  open: boolean;
+  setOpen: (visible: boolean) => void;
+  title: string;
 }
 
-const EditableViewer: React.FC<EditableViewerProps> = ({ visible, setVisible, title }) => {
+const EditableViewer: React.FC<EditableViewerProps> = ({
+  open,
+  setOpen,
+  title,
+}) => {
   const onSave = () => {
-    console.log('create')
-  }
-  return <Drawer
-    visible={visible}
-    autoFocus
-    title={title}
-    maskClosable
-    onClose={() => setVisible(false)}
-    extra={
-      <Space size="middle">
-        <Button onClick={() => setVisible(false)}>取消</Button>
-        <Button onClick={onSave} type="primary">
-          保存
-        </Button>
-      </Space>
-    }>
-    123
-  </Drawer>
-}
+    console.log("create");
+  };
+  return (
+    <Drawer
+      open={open}
+      autoFocus
+      title={title}
+      maskClosable
+      onClose={() => setOpen(false)}
+      extra={
+        <Space size="middle">
+          <Button onClick={() => setOpen(false)}>取消</Button>
+          <Button onClick={onSave} type="primary">
+            保存
+          </Button>
+        </Space>
+      }
+    >
+      123
+    </Drawer>
+  );
+};
 
-export default EditableViewer
+export default EditableViewer;
