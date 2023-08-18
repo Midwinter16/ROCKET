@@ -1,5 +1,15 @@
 import SDatePicker from "@/components/SDatePicker";
-import { Button, Drawer, Form, Input, Space, Switch } from "antd";
+import { useModel } from "@umijs/max";
+import {
+  Button,
+  Drawer,
+  Form,
+  Input,
+  Radio,
+  Select,
+  Space,
+  Switch,
+} from "antd";
 import moment from "moment";
 import { useState } from "react";
 
@@ -25,6 +35,11 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
 }) => {
   const [form] = Form.useForm();
   const [deadline, setDeadline] = useState(false);
+  const [remindTime, setRemindTime] = useState(false);
+  const { labelsList } = useModel("global", (model) => ({
+    labelsList: model.labelsList,
+  }));
+
   const onSave = async () => {
     const formData = await form.validateFields();
   };
@@ -54,35 +69,70 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
           <Input.TextArea rows={4} />
         </Form.Item>
         <Space style={{ marginBottom: "20px" }}>
-          <Switch onChange={(value) => setDeadline(value)} />{" "}
+          <Switch
+            onChange={(value) => {
+              setDeadline(value);
+              if (!value) {
+                setRemindTime(value);
+              }
+            }}
+          />
           <span>设置截止时间</span>
         </Space>
-        <Form.Item
-          style={{ display: deadline ? "block" : "none" }}
-          name="deadline"
-        >
-          <SDatePicker />
+        {deadline && (
+          <Form.Item name="deadline">
+            <SDatePicker />
+          </Form.Item>
+        )}
+
+        {deadline && (
+          <Space style={{ marginBottom: "20px" }}>
+            <Switch onChange={(value) => setRemindTime(value)} />
+            <span>设置提醒时间</span>
+          </Space>
+        )}
+        {remindTime && deadline ? (
+          <Form.Item
+            name="remindTime"
+            style={{ display: remindTime && deadline ? "block" : "none" }}
+          >
+            <Select
+              allowClear
+              style={{ width: "30%" }}
+              defaultValue={[1000 * 30 * 60]}
+              options={[
+                {
+                  label: "30 分钟前",
+                  value: 1000 * 30 * 60,
+                },
+                {
+                  label: "一小时前",
+                  value: 1000 * 60 * 60,
+                },
+                {
+                  label: "两小时前",
+                  value: 1000 * 60 * 60 * 2,
+                },
+              ]}
+            />
+          </Form.Item>
+        ) : null}
+        <Form.Item name="labels" label="标签">
+          <Select
+            mode="multiple"
+            allowClear
+            style={{ width: "100%" }}
+            placeholder="可选项"
+            options={labelsList}
+          />
         </Form.Item>
-        {/* <Form.Item
-          name="labels"
-          label="标签（select，多选）"
-          rules={[{ required: true }]}
-        >
-          <Input />
+        <Form.Item name="priority" label="优先级" rules={[{ required: true }]}>
+          <Radio.Group defaultValue="low">
+            <Radio.Button value="low">低优先级</Radio.Button>
+            <Radio.Button value="middle">普通级别</Radio.Button>
+            <Radio.Button value="high">高优先级</Radio.Button>
+          </Radio.Group>
         </Form.Item>
-        <Form.Item
-          name="priority"
-          label="优先级（单选）"
-          rules={[{ required: true }]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          name="remindTime"
-          label="开启提醒（默认为截止时间前一个小时）"
-        >
-          <Input />
-        </Form.Item> */}
       </Form>
     </Drawer>
   );

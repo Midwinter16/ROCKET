@@ -53,7 +53,7 @@ const SDatePicker = () => {
       showToday
       showTime
       format={"YYYY-MM-DD HH:mm"}
-      defaultValue={dayjs()}
+      defaultValue={dayjs().add(1, "hour")}
       disabledDate={disabledDate}
       disabledTime={disabledDateTime}
       allowClear={false}
