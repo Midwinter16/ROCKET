@@ -48,13 +48,14 @@ const columns: ColumnsType<TYPE.Todo> = [
     dataIndex: "labels",
     render: (labels: string[]) => (
       <>
-        {labels.map((tag) => {
-          return (
-            <Tag color="red" key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
+        {labels &&
+          labels.map((tag) => {
+            return (
+              <Tag color="red" key={tag}>
+                {tag.toUpperCase()}
+              </Tag>
+            );
+          })}
       </>
     ),
   },

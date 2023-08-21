@@ -4,10 +4,10 @@ declare namespace TYPE {
     title?: string;
     description?: string;
     createTime?: number;
-    deadline?: number;
-    priority?: string;
-    completed?: boolean | number;
-    remindTime?: boolean | number;
+    deadline?: undefined | number;
+    priority?: number;
+    completed?: undefined | number;
+    remindTime?: undefined | number;
     labels?: string[];
   }
 }

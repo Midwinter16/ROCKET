@@ -6,9 +6,9 @@ import UncompletedList from "./components/List/UncompletedList";
 
 const Todo = () => {
   const { loading, completed, uncompleted } = useModel("todos", (model) => ({
-    loading: model.loading,
-    completed: model.completed,
-    uncompleted: model.uncompleted,
+    loading: model?.loading,
+    completed: model?.getCompleted,
+    uncompleted: model?.getUncompleted,
   }));
 
   const items: TabsProps["items"] = [

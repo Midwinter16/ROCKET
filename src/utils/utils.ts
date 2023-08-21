@@ -1,4 +1,4 @@
-import { Random } from "mockjs";
-export const randomName = () => {
-  return Random.first();
-};
+import moment from "moment";
+
+export const formatTime = (time: number | undefined) =>
+  time && moment(time).format("YYYY-MM-DD HH:mm");

@@ -6,7 +6,7 @@
       "description": "世界和平",
       "createTime":1672520599000,
       "deadline": 1672521599000,
-      "priority": "high",
+      "priority": 3,
       "completed":1672521590000,
       "remindTime": 1672428000000,
       "labels": ["work", "important"]
@@ -18,7 +18,7 @@
       "createTime":1672520599000,
       "deadline": 1672521599000,
       "completed":false,
-      "priority": "middle",
+      "priority": 2,
       "remindTime": 1672428000000,
       "labels": ["work", "important"]
     },
@@ -29,7 +29,7 @@
       "createTime":1672520599000,
       "deadline": 1672521599000,
       "completed":false,
-      "priority": "middle",
+      "priority": 2,
       "remindTime": 1672428000000,
       "labels": ["work", "important"]
     },
@@ -40,7 +40,7 @@
       "createTime":1672520599000,
       "deadline": 1672521599000,
       "completed":false,
-      "priority": "middle",
+      "priority": 1,
       "remindTime": 1672428000000,
       "labels": ["work", "important"]
     }

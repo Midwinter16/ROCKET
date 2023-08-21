@@ -1,36 +1,58 @@
 import { queryTodos } from "@/services/todos";
+import { formatTime } from "@/utils/utils";
 import { useRequest } from "ahooks";
 import moment from "moment";
 import { useState } from "react";
 
 export default () => {
-  const [todos, setTodos] = useState<TYPE.Todo[]>();
+  const [todos, setTodos] = useState<TYPE.Todo[]>([]);
   const { loading } = useRequest(queryTodos, {
     onSuccess(res) {
       if (!res) return;
       // 时间戳格式化
-      const formatData = res.data.map((todo: TYPE.Todo) => {
-        return {
-          ...todo,
-          deadline: moment(todo.deadline).format("YYYY-MM-DD HH:mm:SS"),
-          remindTime: moment(todo.remindTime).format("YYYY-MM-DD HH:mm:SS"),
-          createTime: moment(todo.createTime).format("YYYY-MM-DD HH:mm:SS"),
-          completed:
-            todo.completed &&
-            moment(todo.completed).format("YYYY-MM-DD HH:mm:SS"),
-          key: todo.id,
-        };
-      });
-      setTodos(formatData);
+      setTodos(res.data);
     },
   });
-  const completed = todos?.filter((todo) => todo.completed);
-  const uncompleted = todos?.filter((todo) => !todo.completed);
+
+  const formatTodo = (todos) => {
+    return todos.map((todo: TYPE.Todo) => {
+      return {
+        ...todo,
+        deadline: formatTime(todo.deadline),
+        remindTime: formatTime(todo.remindTime),
+        createTime: formatTime(todo.createTime),
+        completed: formatTime(todo.completed),
+        key: todo.id,
+        priority: `P${todo.priority}`,
+      };
+    });
+  };
+  const addTodo = (todo) => {
+    const formatTodo = {
+      id: todos?.length + 1,
+      title: "",
+      description: "",
+      createTime: moment().valueOf(),
+      deadline: undefined,
+      priority: 1,
+      completed: undefined,
+      remindTime: undefined,
+      labels: [],
+      ...todo,
+    };
+    console.log(formatTodo);
+    setTodos([...todos, formatTodo]);
+  };
+
+  const getCompleted = formatTodo(todos)?.filter((todo) => todo.completed);
+  const getUncompleted = formatTodo(todos)?.filter((todo) => !todo.completed);
+
   return {
     todos,
     setTodos,
+    addTodo,
     loading,
-    completed,
-    uncompleted,
+    getCompleted,
+    getUncompleted,
   };
 };

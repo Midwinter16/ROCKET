@@ -10,6 +10,7 @@ import {
   Space,
   Switch,
 } from "antd";
+import dayjs from "dayjs";
 import moment from "moment";
 import { useState } from "react";
 
@@ -23,9 +24,9 @@ const initialForm = {
   title: "",
   description: "",
   deadline: moment().add(1, "day").valueOf(),
+  remindTime: undefined,
   labels: [""],
   priority: "low",
-  remindTime: false,
 };
 
 const EditableViewer: React.FC<EditableViewerProps> = ({
@@ -36,12 +37,32 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
   const [form] = Form.useForm();
   const [deadline, setDeadline] = useState(false);
   const [remindTime, setRemindTime] = useState(false);
+  const { addTodo } = useModel("todos", (model) => ({
+    addTodo: model?.addTodo,
+  }));
   const { labelsList } = useModel("global", (model) => ({
-    labelsList: model.labelsList,
+    labelsList: model?.labelsList,
   }));
 
   const onSave = async () => {
     const formData = await form.validateFields();
+    const res = {
+      ...formData,
+      remindTime: remindTime
+        ? formData.deadline - formData.remindTime
+        : undefined,
+    };
+    console.log(res);
+    addTodo(res);
+    setOpen(false);
+    setDeadline(false);
+    setRemindTime(false);
+    form.resetFields();
+  };
+
+  // 时间改变时
+  const timeChange = (time: number) => {
+    form.setFieldValue("deadline", time);
   };
 
   return (
@@ -52,6 +73,7 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
       maskClosable
       onClose={() => setOpen(false)}
       size="large"
+      destroyOnClose={true}
       extra={
         <Space size="middle">
           <Button onClick={() => setOpen(false)}>取消</Button>
@@ -72,6 +94,13 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
           <Switch
             onChange={(value) => {
               setDeadline(value);
+              // 设置 form.item 的 initialValue 不生效
+              if (value) {
+                form.setFieldValue(
+                  "deadline",
+                  dayjs().add(1, "hour").valueOf(),
+                );
+              }
               if (!value) {
                 setRemindTime(value);
               }
@@ -81,10 +110,12 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
         </Space>
         {deadline && (
           <Form.Item name="deadline">
-            <SDatePicker />
+            <SDatePicker
+              initValue={dayjs().add(1, "hour").valueOf()}
+              onChange={timeChange}
+            />
           </Form.Item>
         )}
-
         {deadline && (
           <Space style={{ marginBottom: "20px" }}>
             <Switch onChange={(value) => setRemindTime(value)} />
@@ -95,6 +126,7 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
           <Form.Item
             name="remindTime"
             style={{ display: remindTime && deadline ? "block" : "none" }}
+            initialValue={1000 * 30 * 60}
           >
             <Select
               allowClear
@@ -126,11 +158,18 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
             options={labelsList}
           />
         </Form.Item>
-        <Form.Item name="priority" label="优先级" rules={[{ required: true }]}>
-          <Radio.Group defaultValue="low">
-            <Radio.Button value="low">低优先级</Radio.Button>
-            <Radio.Button value="middle">普通级别</Radio.Button>
-            <Radio.Button value="high">高优先级</Radio.Button>
+        <Form.Item
+          initialValue={1}
+          name="priority"
+          label="优先级"
+          rules={[{ required: true }]}
+        >
+          <Radio.Group defaultValue={1}>
+            <Radio.Button value={1}>P1</Radio.Button>
+            <Radio.Button value={2}>P2</Radio.Button>
+            <Radio.Button value={3}>P3</Radio.Button>
+            <Radio.Button value={4}>P4</Radio.Button>
+            <Radio.Button value={5}>P5</Radio.Button>
           </Radio.Group>
         </Form.Item>
       </Form>

@@ -15,22 +15,26 @@ dayjs.extend(localeData);
 dayjs.extend(weekOfYear);
 dayjs.extend(weekYear);
 
-const SDatePicker = () => {
+interface SDatePickerProps {
+  initValue: number;
+  onChange: (time: number) => void;
+}
+
+const SDatePicker: React.FC<SDatePickerProps> = ({ initValue, onChange }) => {
+  const currentTime = dayjs(initValue);
+  const currentDay = currentTime.date();
+  const currentHour = currentTime.hour();
+  const currentMinute = currentTime.minute();
   const initArray = (range: number) => {
     return new Array(range).fill(0).map((item, index) => index);
   };
   const disabledHour = (day: number) => {
-    const currentDay = dayjs().date();
-    const currentHour = dayjs().hour();
     if (currentDay === day) {
       return initArray(24).slice(0, currentHour);
     }
     return [];
   };
   const disabledMinute = (day: number, hour: number) => {
-    const currentDay = dayjs().date();
-    const currentHour = dayjs().hour();
-    const currentMinute = dayjs().minute();
     if (currentHour === hour && currentDay === day) {
       return initArray(60).slice(0, currentMinute);
     }
@@ -45,7 +49,7 @@ const SDatePicker = () => {
     };
   };
   const disabledDate: RangePickerProps["disabledDate"] = (current) => {
-    return current < dayjs().startOf("day");
+    return current < currentTime.startOf("day");
   };
 
   return (
@@ -53,12 +57,13 @@ const SDatePicker = () => {
       showToday
       showTime
       format={"YYYY-MM-DD HH:mm"}
-      defaultValue={dayjs().add(1, "hour")}
+      defaultValue={currentTime}
       disabledDate={disabledDate}
       disabledTime={disabledDateTime}
       allowClear={false}
       // 情景：当切换到未来日期，选择的时间是放在今天中为更早的时间，如现在是 18:00，切换到未来日期后选择 10:00 再切回当前日期，可以点击确认按钮。理论上要禁用按钮
       // PS：为什么 onchange 是点击确认后的回调而不是改变时间的回调？🤨
+      onChange={(time) => onChange(dayjs(time).valueOf())}
     />
   );
 };
