@@ -18,9 +18,14 @@ dayjs.extend(weekYear);
 interface SDatePickerProps {
   initValue: number;
   onChange: (time: number) => void;
+  disabled: boolean;
 }
 
-const SDatePicker: React.FC<SDatePickerProps> = ({ initValue, onChange }) => {
+const SDatePicker: React.FC<SDatePickerProps> = ({
+  initValue,
+  onChange,
+  disabled,
+}) => {
   const currentTime = dayjs(initValue);
   const currentDay = currentTime.date();
   const currentHour = currentTime.hour();
@@ -54,6 +59,7 @@ const SDatePicker: React.FC<SDatePickerProps> = ({ initValue, onChange }) => {
 
   return (
     <DatePicker
+      disabled={disabled}
       showToday
       showTime
       format={"YYYY-MM-DD HH:mm"}

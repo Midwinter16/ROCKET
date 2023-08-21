@@ -11,32 +11,27 @@ import {
   Switch,
 } from "antd";
 import dayjs from "dayjs";
-import moment from "moment";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface EditableViewerProps {
   open: boolean;
   setOpen: (visible: boolean) => void;
   title: string;
+  type: "EDIT" | "VIEW";
+  initialValue?: TYPE.Todo;
 }
-
-const initialForm = {
-  title: "",
-  description: "",
-  deadline: moment().add(1, "day").valueOf(),
-  remindTime: undefined,
-  labels: [""],
-  priority: "low",
-};
 
 const EditableViewer: React.FC<EditableViewerProps> = ({
   open,
   setOpen,
   title,
+  initialValue,
+  type,
 }) => {
   const [form] = Form.useForm();
   const [deadline, setDeadline] = useState(false);
   const [remindTime, setRemindTime] = useState(false);
+
   const { addTodo } = useModel("todos", (model) => ({
     addTodo: model?.addTodo,
   }));
@@ -44,6 +39,21 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
     labelsList: model?.labelsList,
   }));
 
+  // 初始化表单值
+  useEffect(() => {
+    if (initialValue?.deadline) setDeadline(true);
+    if (initialValue?.remindTime) setRemindTime(true);
+    form.setFieldsValue(initialValue);
+  }, [initialValue]);
+
+  // 重置表单信息
+  const reset = () => {
+    setDeadline(false);
+    setRemindTime(false);
+    form.resetFields();
+  };
+
+  // 保存
   const onSave = async () => {
     const formData = await form.validateFields();
     const res = {
@@ -52,12 +62,9 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
         ? formData.deadline - formData.remindTime
         : undefined,
     };
-    console.log(res);
     addTodo(res);
+    reset();
     setOpen(false);
-    setDeadline(false);
-    setRemindTime(false);
-    form.resetFields();
   };
 
   // 时间改变时
@@ -71,56 +78,90 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
       autoFocus
       title={title}
       maskClosable
-      onClose={() => setOpen(false)}
+      onClose={() => {
+        setOpen(false);
+      }}
       size="large"
-      destroyOnClose={true}
       extra={
-        <Space size="middle">
-          <Button onClick={() => setOpen(false)}>取消</Button>
-          <Button onClick={onSave} type="primary">
-            保存
-          </Button>
-        </Space>
+        type === "EDIT" ? (
+          <Space size="middle">
+            <Button onClick={() => setOpen(false)}>取消</Button>
+            <Button onClick={onSave} type="primary">
+              保存
+            </Button>
+          </Space>
+        ) : (
+          <Button onClick={() => setOpen(false)}>关闭</Button>
+        )
       }
     >
-      <Form layout="vertical" form={form}>
-        <Form.Item name="title" label="标题" rules={[{ required: true }]}>
-          <Input />
+      <Form initialValues={initialValue} layout="vertical" form={form}>
+        <Form.Item
+          name="title"
+          label="标题"
+          rules={type === "EDIT" ? [{ required: true }] : []}
+        >
+          <Input disabled={type === "VIEW"} />
         </Form.Item>
-        <Form.Item name="description" label="描述" rules={[{ required: true }]}>
-          <Input.TextArea rows={4} />
+        <Form.Item
+          name="description"
+          label="描述"
+          rules={type === "EDIT" ? [{ required: true }] : []}
+        >
+          <Input.TextArea disabled={type === "VIEW"} rows={4} />
         </Form.Item>
-        <Space style={{ marginBottom: "20px" }}>
-          <Switch
-            onChange={(value) => {
-              setDeadline(value);
-              // 设置 form.item 的 initialValue 不生效
-              if (value) {
-                form.setFieldValue(
-                  "deadline",
-                  dayjs().add(1, "hour").valueOf(),
-                );
-              }
-              if (!value) {
-                setRemindTime(value);
-              }
-            }}
-          />
-          <span>设置截止时间</span>
-        </Space>
+        <Form.Item
+          name="priority"
+          label="优先级"
+          rules={type === "EDIT" ? [{ required: true }] : []}
+          tooltip={"数字越大优先级越高"}
+        >
+          <Radio.Group disabled={type === "VIEW"} defaultValue={1}>
+            <Radio.Button value={1}>P1</Radio.Button>
+            <Radio.Button value={2}>P2</Radio.Button>
+            <Radio.Button value={3}>P3</Radio.Button>
+            <Radio.Button value={4}>P4</Radio.Button>
+            <Radio.Button value={5}>P5</Radio.Button>
+          </Radio.Group>
+        </Form.Item>
+        {type === "EDIT" ? (
+          <Space style={{ marginBottom: "20px" }}>
+            <Switch
+              onChange={(value) => {
+                setDeadline(value);
+                // 设置 form.item 的 initialValue 不生效
+                if (value) {
+                  form.setFieldValue(
+                    "deadline",
+                    dayjs().add(1, "hour").valueOf(),
+                  );
+                }
+                if (!value) {
+                  setRemindTime(value);
+                }
+              }}
+            />
+            <span>设置截止时间</span>
+          </Space>
+        ) : (
+          <span>截止时间</span>
+        )}
         {deadline && (
           <Form.Item name="deadline">
             <SDatePicker
+              disabled={type === "VIEW"}
               initValue={dayjs().add(1, "hour").valueOf()}
               onChange={timeChange}
             />
           </Form.Item>
         )}
-        {deadline && (
+        {type === "EDIT" && deadline ? (
           <Space style={{ marginBottom: "20px" }}>
             <Switch onChange={(value) => setRemindTime(value)} />
             <span>设置提醒时间</span>
           </Space>
+        ) : (
+          type === "VIEW" && <span>提醒时间</span>
         )}
         {remindTime && deadline ? (
           <Form.Item
@@ -129,6 +170,7 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
             initialValue={1000 * 30 * 60}
           >
             <Select
+              disabled={type === "VIEW"}
               allowClear
               style={{ width: "30%" }}
               defaultValue={[1000 * 30 * 60]}
@@ -151,26 +193,13 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
         ) : null}
         <Form.Item name="labels" label="标签">
           <Select
+            disabled={type === "VIEW"}
             mode="multiple"
             allowClear
             style={{ width: "100%" }}
-            placeholder="可选项"
+            placeholder="多选项"
             options={labelsList}
           />
-        </Form.Item>
-        <Form.Item
-          initialValue={1}
-          name="priority"
-          label="优先级"
-          rules={[{ required: true }]}
-        >
-          <Radio.Group defaultValue={1}>
-            <Radio.Button value={1}>P1</Radio.Button>
-            <Radio.Button value={2}>P2</Radio.Button>
-            <Radio.Button value={3}>P3</Radio.Button>
-            <Radio.Button value={4}>P4</Radio.Button>
-            <Radio.Button value={5}>P5</Radio.Button>
-          </Radio.Group>
         </Form.Item>
       </Form>
     </Drawer>

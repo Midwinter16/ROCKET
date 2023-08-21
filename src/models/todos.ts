@@ -14,7 +14,7 @@ export default () => {
     },
   });
 
-  const formatTodo = (todos) => {
+  const formatTodo = (todos: TYPE.Todo[]) => {
     return todos.map((todo: TYPE.Todo) => {
       return {
         ...todo,
@@ -23,11 +23,10 @@ export default () => {
         createTime: formatTime(todo.createTime),
         completed: formatTime(todo.completed),
         key: todo.id,
-        priority: `P${todo.priority}`,
       };
     });
   };
-  const addTodo = (todo) => {
+  const addTodo = (todo: TYPE.Todo) => {
     const formatTodo = {
       id: todos?.length + 1,
       title: "",
@@ -43,6 +42,21 @@ export default () => {
     console.log(formatTodo);
     setTodos([...todos, formatTodo]);
   };
+  const completedTodo = (id: number | undefined) => {
+    if (!id) throw new Error("id 失效");
+    setTodos((prevData) => {
+      return prevData.map((todo) => {
+        if (todo.id === id) {
+          todo.completed = moment().valueOf();
+        }
+        return todo;
+      });
+    });
+  };
+  const deleteTodo = (id: number | undefined) => {
+    if (!id) throw new Error("id 失效");
+    setTodos((prevData) => prevData.filter((todo) => todo.id !== id));
+  };
 
   const getCompleted = formatTodo(todos)?.filter((todo) => todo.completed);
   const getUncompleted = formatTodo(todos)?.filter((todo) => !todo.completed);
@@ -51,6 +65,8 @@ export default () => {
     todos,
     setTodos,
     addTodo,
+    completedTodo,
+    deleteTodo,
     loading,
     getCompleted,
     getUncompleted,
