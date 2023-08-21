@@ -19,8 +19,7 @@
     "dayjs": "^1.11.9",
     "lodash": "^4.17.21",
     "mockjs": "^1.1.0",
-    "moment": "^2.29.4",
-    "sensd": "^2.18.1"
+    "moment": "^2.29.4"
   },
   "devDependencies": {
     "@types/mockjs": "^1.0.7",
