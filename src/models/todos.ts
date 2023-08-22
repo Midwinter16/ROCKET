@@ -59,6 +59,14 @@ export default () => {
 
   const getCompleted = formatTodo(todos)?.filter((todo) => todo.completed);
   const getUncompleted = formatTodo(todos)?.filter((todo) => !todo.completed);
+  const getExpiry = formatTodo(
+    todos.filter((todo) => {
+      const current = moment().valueOf();
+      if (todo.deadline && todo.remindTime)
+        return todo.remindTime < current && current < todo.deadline;
+      return false;
+    }),
+  );
 
   return {
     todos,
@@ -69,5 +77,6 @@ export default () => {
     loading,
     getCompleted,
     getUncompleted,
+    getExpiry,
   };
 };

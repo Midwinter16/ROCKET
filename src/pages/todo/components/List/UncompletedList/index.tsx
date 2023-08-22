@@ -6,10 +6,10 @@ import type { ColumnsType } from "antd/es/table";
 
 interface ListProps {
   data?: TYPE.Todo[];
-  title: string;
   loading: boolean;
   setViewOpen: (value: boolean) => void;
   setinitValue: (value: TYPE.Todo) => void;
+  title: string;
 }
 
 const UncompletedList: React.FC<ListProps> = ({
@@ -17,6 +17,7 @@ const UncompletedList: React.FC<ListProps> = ({
   data,
   setinitValue,
   setViewOpen,
+  title,
 }) => {
   const { completedTodo, deleteTodo } = useModel("todos", (model) => ({
     completedTodo: model.completedTodo,
@@ -40,14 +41,6 @@ const UncompletedList: React.FC<ListProps> = ({
           {text}
         </a>
       ),
-      fixed: "left",
-    },
-    {
-      title: "描述",
-      dataIndex: "description",
-      width: 200,
-      key: "description",
-      ellipsis: true,
       fixed: "left",
     },
     {
@@ -129,7 +122,10 @@ const UncompletedList: React.FC<ListProps> = ({
         alignItems: "center",
       }}
     >
-      <span>共 {pageData.length} 条</span>
+      <span>
+        <span style={{ color: "red" }}>{title && `${title} - `}</span>共{" "}
+        {pageData.length} 条
+      </span>
       <SettingOutlined style={{ fontSize: "14px" }} />
     </div>
   );
