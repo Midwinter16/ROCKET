@@ -5,7 +5,6 @@ import { ColumnsType } from "antd/es/table";
 
 interface ListProps {
   data?: TYPE.Todo[];
-  title: string;
   loading: boolean;
   setViewOpen: (value: boolean) => void;
   setinitValue: (value: TYPE.Todo) => void;
@@ -34,14 +33,6 @@ const CompletedList: React.FC<ListProps> = ({
           {text}
         </a>
       ),
-      fixed: "left",
-    },
-    {
-      title: "描述",
-      dataIndex: "description",
-      width: 200,
-      key: "description",
-      ellipsis: true,
       fixed: "left",
     },
     {
