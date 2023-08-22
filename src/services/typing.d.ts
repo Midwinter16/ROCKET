@@ -12,7 +12,8 @@ declare namespace TYPE {
   }
   interface Label {
     id?: number;
-    name?: stirng;
+    value?: string;
+    label?: string;
     color?: string;
   }
 }

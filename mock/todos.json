@@ -12,12 +12,14 @@
       "labels": [
         {
           "id": 1,
-          "name": "测试标签",
+          "value": "测试标签",
+          "label": "测试标签",
           "color": "red"
         },
         {
           "id": 2,
-          "name": "work",
+          "value": "work",
+          "label": "work",
           "color": "red"
         }
       ]
@@ -34,12 +36,14 @@
       "labels": [
         {
           "id": 1,
-          "name": "测试标签",
+          "value": "测试标签",
+          "label": "测试标签",
           "color": "red"
         },
         {
           "id": 2,
-          "name": "work",
+          "value": "work",
+          "label": "work",
           "color": "red"
         }
       ]
@@ -56,12 +60,14 @@
       "labels": [
         {
           "id": 1,
-          "name": "测试标签",
+          "value": "测试标签",
+          "label": "测试标签",
           "color": "red"
         },
         {
           "id": 2,
-          "name": "work",
+          "value": "work",
+          "label": "work",
           "color": "red"
         }
       ]
@@ -78,12 +84,14 @@
       "labels": [
         {
           "id": 1,
-          "name": "测试标签",
+          "value": "测试标签",
+          "label": "测试标签",
           "color": "red"
         },
         {
           "id": 2,
-          "name": "work",
+          "value": "work",
+          "label": "work",
           "color": "red"
         }
       ]

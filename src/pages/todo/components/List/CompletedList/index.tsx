@@ -16,6 +16,7 @@ const CompletedList: React.FC<ListProps> = ({
   setinitValue,
   setViewOpen,
 }) => {
+  console.log(data);
   const columns: ColumnsType<TYPE.Todo> = [
     {
       title: "名称",
@@ -63,10 +64,10 @@ const CompletedList: React.FC<ListProps> = ({
       render: (labels: TYPE.Label[]) => (
         <>
           {labels &&
-            labels.map((tag) => {
+            labels.map((label) => {
               return (
-                <Tag color={tag.color} key={tag.id}>
-                  {tag.name}
+                <Tag color={label.color} key={label.id}>
+                  {label.label}
                 </Tag>
               );
             })}

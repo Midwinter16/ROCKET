@@ -44,13 +44,16 @@ const Todo = () => {
       children: (
         <>
           {expiry.length !== 0 && (
-            <UncompletedList
-              data={expiry as TYPE.Todo[]}
-              loading={loading}
-              setinitValue={setinitValue}
-              setViewOpen={setViewOpen}
-              title={"即将到期"}
-            />
+            <>
+              <UncompletedList
+                data={expiry as TYPE.Todo[]}
+                loading={loading}
+                setinitValue={setinitValue}
+                setViewOpen={setViewOpen}
+                title={"即将到期"}
+              />
+              <div style={{ margin: "20px 0" }}></div>
+            </>
           )}
           <UncompletedList
             data={uncompleted as TYPE.Todo[]}

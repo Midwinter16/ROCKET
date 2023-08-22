@@ -63,7 +63,7 @@ const LabelDrawer: React.FC<LabelDrawerProps> = ({ open, setOpen }) => {
                 key={label.id}
                 color={label.color}
               >
-                {label.name}
+                {label.label}
               </Tag>
             ))}
           </Space>
