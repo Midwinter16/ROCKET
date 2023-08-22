@@ -16,7 +16,6 @@ const CompletedList: React.FC<ListProps> = ({
   setinitValue,
   setViewOpen,
 }) => {
-  console.log(data);
   const columns: ColumnsType<TYPE.Todo> = [
     {
       title: "名称",
