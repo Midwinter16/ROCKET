@@ -1,21 +1,22 @@
 import { PRIORITY } from "@/constants";
 import { SettingOutlined } from "@ant-design/icons";
-import { Button, Col, Row, Space, Table, Tag } from "antd";
+import { Space, Table, Tag } from "antd";
 import { ColumnsType } from "antd/es/table";
-import { useState } from "react";
-import EditableViewer from "../../EditableViewer";
 
 interface ListProps {
   data?: TYPE.Todo[];
   title: string;
   loading: boolean;
+  setViewOpen: (value: boolean) => void;
+  setinitValue: (value: TYPE.Todo) => void;
 }
 
-const CompletedList: React.FC<ListProps> = ({ loading, data }) => {
-  const [editOpen, setEditOpen] = useState(false);
-  const [viewOpen, setViewOpen] = useState(false);
-  const [initValue, setinitValue] = useState<TYPE.Todo>({});
-
+const CompletedList: React.FC<ListProps> = ({
+  loading,
+  data,
+  setinitValue,
+  setViewOpen,
+}) => {
   const columns: ColumnsType<TYPE.Todo> = [
     {
       title: "名称",
@@ -48,9 +49,14 @@ const CompletedList: React.FC<ListProps> = ({ loading, data }) => {
       dataIndex: "priority",
       key: "priority",
       width: 100,
-      sorter: (a, b) => a.priority - b.priority,
+      sorter: (a, b) => {
+        if (a.priority && b.priority) {
+          return a.priority - b.priority;
+        }
+        return 0;
+      },
       render: (priority) => {
-        const res = PRIORITY.find((item) => item.priority === priority);
+        const res = PRIORITY.find((item) => item.value === priority);
         return <Tag color={res?.color}>{`P${priority}`}</Tag>;
       },
     },
@@ -63,13 +69,13 @@ const CompletedList: React.FC<ListProps> = ({ loading, data }) => {
       title: "标签",
       key: "labels",
       dataIndex: "labels",
-      render: (labels: string[]) => (
+      render: (labels: TYPE.Label[]) => (
         <>
           {labels &&
             labels.map((tag) => {
               return (
-                <Tag color="red" key={tag}>
-                  {tag.toUpperCase()}
+                <Tag color={tag.color} key={tag.id}>
+                  {tag.name}
                 </Tag>
               );
             })}
@@ -104,13 +110,6 @@ const CompletedList: React.FC<ListProps> = ({ loading, data }) => {
 
   return (
     <>
-      <Row justify="end" style={{ marginBottom: "10px" }}>
-        <Col>
-          <Button type="primary" onClick={() => setEditOpen(true)}>
-            新增代办
-          </Button>
-        </Col>
-      </Row>
       <Table
         loading={loading}
         scroll={{ x: 1400 }}
@@ -119,19 +118,6 @@ const CompletedList: React.FC<ListProps> = ({ loading, data }) => {
         dataSource={data}
         title={titleRender}
       />
-      <EditableViewer
-        open={editOpen}
-        setOpen={setEditOpen}
-        title="新增代办"
-        type="EDIT"
-      ></EditableViewer>
-      <EditableViewer
-        open={viewOpen}
-        setOpen={setViewOpen}
-        title="查看详情"
-        type="VIEW"
-        initialValue={initValue}
-      ></EditableViewer>
     </>
   );
 };

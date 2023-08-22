@@ -8,6 +8,11 @@ declare namespace TYPE {
     priority?: number;
     completed?: undefined | number;
     remindTime?: undefined | number;
-    labels?: string[];
+    labels?: Label[];
+  }
+  interface Label {
+    id?: number;
+    name?: stirng;
+    color?: string;
   }
 }

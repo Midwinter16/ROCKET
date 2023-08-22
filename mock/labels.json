@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "测试标签",
+      "color": "red"
+    },
+    {
+      "id": 2,
+      "name": "work",
+      "color": "red"
+    },
+    {
+      "id": 3,
+      "name": "important",
+      "color": "red"
+    }
+  ]
+}

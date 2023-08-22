@@ -9,12 +9,12 @@ export default () => {
   const { loading } = useRequest(queryTodos, {
     onSuccess(res) {
       if (!res) return;
-      // 时间戳格式化
       setTodos(res.data);
     },
   });
 
   const formatTodo = (todos: TYPE.Todo[]) => {
+    // 时间戳格式化
     return todos.map((todo: TYPE.Todo) => {
       return {
         ...todo,
@@ -39,7 +39,6 @@ export default () => {
       labels: [],
       ...todo,
     };
-    console.log(formatTodo);
     setTodos([...todos, formatTodo]);
   };
   const completedTodo = (id: number | undefined) => {

@@ -4,45 +4,89 @@
       "id": 1,
       "title": "JS是世界上最好的语言",
       "description": "世界和平",
-      "createTime":1672520599000,
+      "createTime": 1672520599000,
       "deadline": 1672521599000,
       "priority": 3,
-      "completed":1672521590000,
+      "completed": 1672521590000,
       "remindTime": 1672428000000,
-      "labels": ["work", "important"]
+      "labels": [
+        {
+          "id": 1,
+          "name": "测试标签",
+          "color": "red"
+        },
+        {
+          "id": 2,
+          "name": "work",
+          "color": "red"
+        }
+      ]
     },
     {
       "id": 2,
       "title": "PHP 是世界上最好的语言",
       "description": "世界和平",
-      "createTime":1672520599000,
+      "createTime": 1672520599000,
       "deadline": 1672521599000,
-      "completed":false,
+      "completed": false,
       "priority": 2,
       "remindTime": 1672428000000,
-      "labels": ["work", "important"]
+      "labels": [
+        {
+          "id": 1,
+          "name": "测试标签",
+          "color": "red"
+        },
+        {
+          "id": 2,
+          "name": "work",
+          "color": "red"
+        }
+      ]
     },
     {
       "id": 3,
       "title": "测试 title1",
       "description": "长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本",
-      "createTime":1672520599000,
+      "createTime": 1672520599000,
       "deadline": 1672521599000,
-      "completed":false,
+      "completed": false,
       "priority": 2,
       "remindTime": 1672428000000,
-      "labels": ["work", "important"]
+      "labels": [
+        {
+          "id": 1,
+          "name": "测试标签",
+          "color": "red"
+        },
+        {
+          "id": 2,
+          "name": "work",
+          "color": "red"
+        }
+      ]
     },
     {
       "id": 4,
       "title": "测试 title 2",
       "description": "hello",
-      "createTime":1672520599000,
+      "createTime": 1672520599000,
       "deadline": 1672521599000,
-      "completed":false,
+      "completed": false,
       "priority": 1,
       "remindTime": 1672428000000,
-      "labels": ["work", "important"]
+      "labels": [
+        {
+          "id": 1,
+          "name": "测试标签",
+          "color": "red"
+        },
+        {
+          "id": 2,
+          "name": "work",
+          "color": "red"
+        }
+      ]
     }
   ]
 }

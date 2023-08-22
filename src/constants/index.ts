@@ -1,23 +1,53 @@
 export const DEFAULT_NAME = "Umi Max";
 export const PRIORITY = [
   {
-    priority: 1,
+    value: 1,
     color: "default",
   },
   {
-    priority: 2,
+    value: 2,
     color: "processing",
   },
   {
-    priority: 3,
+    value: 3,
     color: "success",
   },
   {
-    priority: 4,
+    value: 4,
     color: "warning",
   },
   {
-    priority: 5,
+    value: 5,
     color: "error",
+  },
+];
+export const COLOR = [
+  {
+    value: "magenta",
+    name: "洋紫红",
+  },
+  {
+    value: "red",
+    name: "普通红",
+  },
+  {
+    value: "orange",
+    name: "普通橘",
+  },
+  {
+    value: "gold",
+    name: "深藏金",
+  },
+  {
+    value: "lime",
+    name: "柠檬绿",
+  },
+  {
+    value: "cyan",
+    name: "兰绿青",
+  },
+  {
+    value: "blue",
+    name: "天空蓝",
   },
 ];

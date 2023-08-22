@@ -1,21 +1,23 @@
 import { PRIORITY } from "@/constants";
 import { SettingOutlined } from "@ant-design/icons";
 import { useModel } from "@umijs/max";
-import { Button, Col, Popconfirm, Row, Space, Table, Tag, message } from "antd";
+import { Popconfirm, Space, Table, Tag, message } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import { useState } from "react";
-import EditableViewer from "../../EditableViewer";
 
 interface ListProps {
   data?: TYPE.Todo[];
   title: string;
   loading: boolean;
+  setViewOpen: (value: boolean) => void;
+  setinitValue: (value: TYPE.Todo) => void;
 }
 
-const UncompletedList: React.FC<ListProps> = ({ loading, data }) => {
-  const [editOpen, setEditOpen] = useState(false);
-  const [viewOpen, setViewOpen] = useState(false);
-  const [initValue, setinitValue] = useState<TYPE.Todo>({});
+const UncompletedList: React.FC<ListProps> = ({
+  loading,
+  data,
+  setinitValue,
+  setViewOpen,
+}) => {
   const { completedTodo, deleteTodo } = useModel("todos", (model) => ({
     completedTodo: model.completedTodo,
     deleteTodo: model.deleteTodo,
@@ -53,9 +55,14 @@ const UncompletedList: React.FC<ListProps> = ({ loading, data }) => {
       dataIndex: "priority",
       key: "priority",
       width: 100,
-      sorter: (a, b) => a.priority - b.priority,
+      sorter: (a, b) => {
+        if (a.priority && b.priority) {
+          return a.priority - b.priority;
+        }
+        return 0;
+      },
       render: (priority) => {
-        const res = PRIORITY.find((item) => item.priority === priority);
+        const res = PRIORITY.find((item) => item.value === priority);
         return <Tag color={res?.color}>{`P${priority}`}</Tag>;
       },
     },
@@ -73,13 +80,13 @@ const UncompletedList: React.FC<ListProps> = ({ loading, data }) => {
       title: "标签",
       key: "labels",
       dataIndex: "labels",
-      render: (labels: string[]) => (
+      render: (labels: TYPE.Label[]) => (
         <>
           {labels &&
             labels.map((tag) => {
               return (
-                <Tag color="red" key={tag}>
-                  {tag.toUpperCase()}
+                <Tag color={tag.color} key={tag.id}>
+                  {tag.name}
                 </Tag>
               );
             })}
@@ -129,13 +136,6 @@ const UncompletedList: React.FC<ListProps> = ({ loading, data }) => {
 
   return (
     <>
-      <Row justify="end" style={{ marginBottom: "10px" }}>
-        <Col>
-          <Button type="primary" onClick={() => setEditOpen(true)}>
-            新增代办
-          </Button>
-        </Col>
-      </Row>
       <Table
         loading={loading}
         scroll={{ x: 1400 }}
@@ -144,19 +144,6 @@ const UncompletedList: React.FC<ListProps> = ({ loading, data }) => {
         dataSource={data}
         title={titleRender}
       />
-      <EditableViewer
-        open={editOpen}
-        setOpen={setEditOpen}
-        title="新增代办"
-        type="EDIT"
-      ></EditableViewer>
-      <EditableViewer
-        open={viewOpen}
-        setOpen={setViewOpen}
-        title="查看详情"
-        type="VIEW"
-        initialValue={initValue}
-      ></EditableViewer>
     </>
   );
 };

@@ -1,4 +1,5 @@
 import SDatePicker from "@/components/SDatePicker";
+import { PRIORITY } from "@/constants";
 import { useModel } from "@umijs/max";
 import {
   Button,
@@ -35,8 +36,8 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
   const { addTodo } = useModel("todos", (model) => ({
     addTodo: model?.addTodo,
   }));
-  const { labelsList } = useModel("global", (model) => ({
-    labelsList: model?.labelsList,
+  const { labels } = useModel("labels", (model) => ({
+    labels: model?.labels,
   }));
 
   // 初始化表单值
@@ -95,7 +96,7 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
         )
       }
     >
-      <Form initialValues={initialValue} layout="vertical" form={form}>
+      <Form layout="vertical" form={form}>
         <Form.Item
           name="title"
           label="标题"
@@ -116,12 +117,13 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
           rules={type === "EDIT" ? [{ required: true }] : []}
           tooltip={"数字越大优先级越高"}
         >
-          <Radio.Group disabled={type === "VIEW"} defaultValue={1}>
-            <Radio.Button value={1}>P1</Radio.Button>
-            <Radio.Button value={2}>P2</Radio.Button>
-            <Radio.Button value={3}>P3</Radio.Button>
-            <Radio.Button value={4}>P4</Radio.Button>
-            <Radio.Button value={5}>P5</Radio.Button>
+          <Radio.Group disabled={type === "VIEW"}>
+            {PRIORITY.map((priority) => (
+              <Radio.Button
+                key={priority.value}
+                value={priority.value}
+              >{`P${priority.value}`}</Radio.Button>
+            ))}
           </Radio.Group>
         </Form.Item>
         {type === "EDIT" ? (
@@ -173,7 +175,6 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
               disabled={type === "VIEW"}
               allowClear
               style={{ width: "30%" }}
-              defaultValue={[1000 * 30 * 60]}
               options={[
                 {
                   label: "30 分钟前",
@@ -198,7 +199,7 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
             allowClear
             style={{ width: "100%" }}
             placeholder="多选项"
-            options={labelsList}
+            options={labels}
           />
         </Form.Item>
       </Form>
