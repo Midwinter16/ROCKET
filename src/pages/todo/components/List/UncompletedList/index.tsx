@@ -76,10 +76,10 @@ const UncompletedList: React.FC<ListProps> = ({
       render: (labels: TYPE.Label[]) => (
         <>
           {labels &&
-            labels.map((tag) => {
+            labels.map((label) => {
               return (
-                <Tag color={tag.color} key={tag.id}>
-                  {tag.name}
+                <Tag color={label.color} key={label.id}>
+                  {label.label}
                 </Tag>
               );
             })}
@@ -139,6 +139,7 @@ const UncompletedList: React.FC<ListProps> = ({
         columns={columns}
         dataSource={data}
         title={titleRender}
+        pagination={title === "即将到期" ? false : {}}
       />
     </>
   );

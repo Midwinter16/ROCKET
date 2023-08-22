@@ -13,8 +13,8 @@ export default () => {
   });
 
   const addLabel = (newLabel: TYPE.Label) => {
-    const repeat = labels.find((label) => label.name === newLabel.name);
-    if (repeat) return repeat.name;
+    const repeat = labels.find((label) => label.value === newLabel.value);
+    if (repeat) return repeat.value;
     setLabels((prevData) => [
       ...prevData,
       {
@@ -30,7 +30,8 @@ export default () => {
         if (id === label.id) {
           return {
             ...label,
-            name: newLabel.name,
+            value: newLabel.value,
+            label: newLabel.label,
             color: newLabel.color,
           };
         }

@@ -59,14 +59,20 @@ const EditLabel: React.FC<EditLabelProps> = ({
 
   const onSave = async () => {
     const res = await form.validateFields();
+    // 对齐 select 中的 options 格式要求
+    const formatRes = {
+      ...res,
+      value: res.name,
+      label: res.name,
+    };
     if (type === "EDIT") {
-      const repeatName = addLabel(res);
+      const repeatName = addLabel(formatRes);
       if (repeatName) {
         return message.warning(`标签${repeatName}已存在`);
       }
       message.success(`添加标签<${res.name}>成功`);
     } else if (type === "VIEW") {
-      changeLabel(res, initValue.id);
+      changeLabel(formatRes, initValue.id);
       message.success(`修改标签<${res.name}>成功`);
     }
     setOpen(false);
