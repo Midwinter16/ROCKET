@@ -19,7 +19,8 @@ interface EditLabelProps {
   setOpen: (value: boolean) => void;
   type: "VIEW" | "EDIT";
   initValue: {
-    name: string;
+    value: string;
+    label: string;
     color: string;
     id: number;
   };
@@ -62,18 +63,18 @@ const EditLabel: React.FC<EditLabelProps> = ({
     // 对齐 select 中的 options 格式要求
     const formatRes = {
       ...res,
-      value: res.name,
-      label: res.name,
+      value: res.value,
+      label: res.value,
     };
     if (type === "EDIT") {
       const repeatName = addLabel(formatRes);
       if (repeatName) {
         return message.warning(`标签${repeatName}已存在`);
       }
-      message.success(`添加标签<${res.name}>成功`);
+      message.success(`添加标签<${formatRes.value}>成功`);
     } else if (type === "VIEW") {
       changeLabel(formatRes, initValue.id);
-      message.success(`修改标签<${res.name}>成功`);
+      message.success(`修改标签<${formatRes.value}>成功`);
     }
     setOpen(false);
   };
@@ -113,7 +114,7 @@ const EditLabel: React.FC<EditLabelProps> = ({
     >
       <Form layout="vertical" form={form}>
         <Form.Item
-          name="name"
+          name="value"
           label="标签名"
           rules={[
             { max: 6, message: "标签名称最大支持 6 个字符" },
@@ -153,7 +154,7 @@ const EditLabel: React.FC<EditLabelProps> = ({
       <Space direction="vertical">
         <span>标签预览</span>
         <Tag color={initValue.color}>
-          {initValue.name ? initValue.name : "模板"}
+          {initValue.value ? initValue.value : "模板"}
         </Tag>
       </Space>
     </Drawer>

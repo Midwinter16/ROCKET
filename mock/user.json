@@ -1,0 +1,52 @@
+{
+  "id": 1,
+  "name": "测试标签",
+  "todos": [
+    {
+      "id": 1,
+      "title": "JS是世界上最好的语言",
+      "description": "世界和平",
+      "createTime": 1692759721532,
+      "deadline": 1692765685932,
+      "priority": 3,
+      "completed": "undefined",
+      "remindTime": 1692759821532,
+      "labels": [
+        {
+          "id": 1,
+          "value": "测试标签",
+          "label": "测试标签",
+          "color": "red"
+        },
+        {
+          "id": 2,
+          "value": "work",
+          "label": "work",
+          "color": "red"
+        }
+      ]
+    }
+  ],
+  "statistics": {
+    "P1": [
+      10,
+      12
+    ],
+    "P2": [
+      24,
+      30
+    ],
+    "P3": [
+      28,
+      32
+    ],
+    "P4": [
+      4,
+      7
+    ],
+    "P5": [
+      12,
+      12
+    ]
+  }
+}

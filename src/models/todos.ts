@@ -13,6 +13,7 @@ export default () => {
     },
   });
 
+  // 格式化待办
   const formatTodo = (todos: TYPE.Todo[]) => {
     // 时间戳格式化
     return todos.map((todo: TYPE.Todo) => {
@@ -26,6 +27,7 @@ export default () => {
       };
     });
   };
+  // 添加待办
   const addTodo = (todo: TYPE.Todo) => {
     const formatTodo = {
       id: todos?.length + 1,
@@ -41,6 +43,7 @@ export default () => {
     };
     setTodos([...todos, formatTodo]);
   };
+  // 待办状态从未完成到完成
   const completedTodo = (id: number | undefined) => {
     if (!id) throw new Error("id 失效");
     setTodos((prevData) => {
@@ -52,14 +55,18 @@ export default () => {
       });
     });
   };
+  // 删除待办
   const deleteTodo = (id: number | undefined) => {
     if (!id) throw new Error("id 失效");
     setTodos((prevData) => prevData.filter((todo) => todo.id !== id));
   };
 
+  // 获取已完成待办
   const getCompleted = formatTodo(todos)?.filter((todo) => todo.completed);
+  // 获取未完成待办
   const getUncompleted = formatTodo(todos)?.filter((todo) => !todo.completed);
-  const getExpiry = formatTodo(
+  // 获取触发提醒的待办
+  const getExpirings = formatTodo(
     todos.filter((todo) => {
       const current = moment().valueOf();
       if (todo.deadline && todo.remindTime)
@@ -67,6 +74,38 @@ export default () => {
       return false;
     }),
   );
+  // 获取逾期待办
+  const getExpireds = formatTodo(
+    todos.filter((todo) => {
+      const current = moment().valueOf();
+      if (todo.deadline && todo.remindTime) return current > todo.deadline;
+      return false;
+    }),
+  );
+  // 获取未逾期待办
+  const getUnexpireds = formatTodo(
+    todos.filter((todo) => {
+      const current = moment().valueOf();
+      if (todo.deadline && todo.remindTime) return current < todo.deadline;
+      return false;
+    }),
+  );
+  // 获取最快到期待办
+  const getExpiring = (() => {
+    const unexpired = todos.filter((todo) => {
+      const current = moment().valueOf();
+      if (todo.deadline && todo.remindTime) return current < todo.deadline;
+      return false;
+    });
+    if (unexpired.length === 0) return null;
+    if (unexpired.length === 1) return unexpired[0];
+    return formatTodo([
+      unexpired.reduce((target, todo) => {
+        if (target?.deadline > todo?.deadline) return todo;
+        return target;
+      }, unexpired[0]),
+    ])[0];
+  })();
 
   return {
     todos,
@@ -77,6 +116,9 @@ export default () => {
     loading,
     getCompleted,
     getUncompleted,
-    getExpiry,
+    getExpirings,
+    getExpireds,
+    getUnexpireds,
+    getExpiring,
   };
 };

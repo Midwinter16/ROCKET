@@ -1,7 +1,7 @@
 import { useModel } from "@umijs/max";
 import { Button, Drawer, Space, Tag } from "antd";
 import { useState } from "react";
-import EditLabel from "./edit";
+import EditLabel from "./Edit";
 import styles from "./index.less";
 
 interface LabelDrawerProps {
@@ -33,7 +33,8 @@ const LabelDrawer: React.FC<LabelDrawerProps> = ({ open, setOpen }) => {
               onClick={() => {
                 setType("EDIT");
                 setInitValue({
-                  name: "",
+                  value: "",
+                  label: "",
                   color: "",
                   id: "",
                 });

@@ -13,13 +13,15 @@
   "dependencies": {
     "@ant-design/icons": "^5.2.5",
     "@ant-design/pro-components": "^2.4.4",
+    "@antv/g2plot": "^2.4.31",
     "@umijs/max": "^4.0.75",
     "ahooks": "^3.7.8",
     "antd": "^5.4.0",
     "dayjs": "^1.11.9",
     "lodash": "^4.17.21",
     "mockjs": "^1.1.0",
-    "moment": "^2.29.4"
+    "moment": "^2.29.4",
+    "react-countup": "^6.4.2"
   },
   "devDependencies": {
     "@types/mockjs": "^1.0.7",
