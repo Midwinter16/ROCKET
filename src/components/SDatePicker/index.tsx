@@ -1,5 +1,6 @@
 import { DatePicker } from "antd";
 import { RangePickerProps } from "antd/es/date-picker";
+import { DatePickerProps } from "antd/lib/date-picker";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import customParseFormat from "dayjs/plugin/customParseFormat";
@@ -15,13 +16,13 @@ dayjs.extend(localeData);
 dayjs.extend(weekOfYear);
 dayjs.extend(weekYear);
 
-interface SDatePickerProps {
+interface IProps {
   initValue: number;
   onChange: (time: number) => void;
   disabled: boolean;
 }
 
-const SDatePicker: React.FC<SDatePickerProps> = ({
+const SDatePicker: React.FC<DatePickerProps & IProps> = ({
   initValue,
   onChange,
   disabled,

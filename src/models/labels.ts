@@ -12,6 +12,7 @@ export default () => {
     },
   });
 
+  // 添加标签
   const addLabel = (newLabel: TYPE.Label) => {
     const repeat = labels.find((label) => label.value === newLabel.value);
     if (repeat) return repeat.value;
@@ -23,7 +24,7 @@ export default () => {
       },
     ]);
   };
-
+  // 标签编辑
   const changeLabel = (newLabel: TYPE.Label, id: number) => {
     setLabels((prevData) =>
       prevData.map((label) => {

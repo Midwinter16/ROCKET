@@ -42,9 +42,11 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
 
   // 初始化表单值
   useEffect(() => {
-    if (initialValue?.deadline) setDeadline(true);
-    if (initialValue?.remindTime) setRemindTime(true);
-    form.setFieldsValue(initialValue);
+    if (type === "VIEW") {
+      if (initialValue?.deadline) setDeadline(true);
+      if (initialValue?.remindTime) setRemindTime(true);
+      form.setFieldsValue(initialValue);
+    }
   }, [initialValue]);
 
   // 重置表单信息
@@ -59,9 +61,7 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
     const formData = await form.validateFields();
     const res = {
       ...formData,
-      remindTime: remindTime
-        ? formData.deadline - formData.remindTime
-        : undefined,
+      remindTime: remindTime ? formData.deadline - formData.remindTime : null,
     };
     addTodo(res);
     reset();
@@ -80,6 +80,7 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
       title={title}
       maskClosable
       onClose={() => {
+        reset();
         setOpen(false);
       }}
       size="large"
@@ -129,6 +130,7 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
         {type === "EDIT" ? (
           <Space style={{ marginBottom: "20px" }}>
             <Switch
+              checked={deadline}
               onChange={(value) => {
                 setDeadline(value);
                 // 设置 form.item 的 initialValue 不生效
@@ -145,9 +147,9 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
             />
             <span>设置截止时间</span>
           </Space>
-        ) : (
+        ) : type === "VIEW" && form.getFieldValue("deadline") ? (
           <span>截止时间</span>
-        )}
+        ) : null}
         {deadline && (
           <Form.Item name="deadline">
             <SDatePicker
@@ -159,12 +161,15 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
         )}
         {type === "EDIT" && deadline ? (
           <Space style={{ marginBottom: "20px" }}>
-            <Switch onChange={(value) => setRemindTime(value)} />
+            <Switch
+              checked={remindTime}
+              onChange={(value) => setRemindTime(value)}
+            />
             <span>设置提醒时间</span>
           </Space>
-        ) : (
-          type === "VIEW" && <span>提醒时间</span>
-        )}
+        ) : type === "VIEW" && form.getFieldValue("remindTime") ? (
+          <span>提醒时间</span>
+        ) : null}
         {remindTime && deadline ? (
           <Form.Item
             name="remindTime"
