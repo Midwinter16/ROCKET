@@ -1,5 +1,5 @@
 import { queryTodos } from "@/services/todos";
-import { formatTime } from "@/utils/utils";
+import { JSONformat, formatTime } from "@/utils/utils";
 import { useRequest } from "ahooks";
 import moment from "moment";
 import { useState } from "react";
@@ -9,7 +9,7 @@ export default () => {
   const { loading } = useRequest(queryTodos, {
     onSuccess(res) {
       if (!res) return;
-      setTodos(res.data);
+      setTodos(JSONformat(JSON.stringify(res.data)));
     },
   });
 
@@ -69,8 +69,9 @@ export default () => {
   const getExpirings = formatTodo(
     todos.filter((todo) => {
       const current = moment().valueOf();
-      if (todo.deadline && todo.remindTime)
+      if (todo.deadline && todo.remindTime) {
         return todo.remindTime < current && current < todo.deadline;
+      }
       return false;
     }),
   );
@@ -78,6 +79,7 @@ export default () => {
   const getExpireds = formatTodo(
     todos.filter((todo) => {
       const current = moment().valueOf();
+      if (todo.completed) return false;
       if (todo.deadline && todo.remindTime) return current > todo.deadline;
       return false;
     }),
@@ -86,7 +88,8 @@ export default () => {
   const getUnexpireds = formatTodo(
     todos.filter((todo) => {
       const current = moment().valueOf();
-      if (todo.deadline && todo.remindTime) return current < todo.deadline;
+      if (!todo.deadline) return true;
+      if (todo.deadline) return current < todo.deadline;
       return false;
     }),
   );

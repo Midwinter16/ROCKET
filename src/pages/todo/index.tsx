@@ -31,18 +31,18 @@ const Todo = () => {
 
   // 提醒
   const [api, useContext] = notification.useNotification();
-  const openNotification = (expiry: TYPE.Todo[]) => {
-    if (expiry.length !== 0)
+  const openNotification = (expirings: TYPE.Todo[]) => {
+    if (expirings.length !== 0)
       api.warning({
         message: `待办到期提示`,
-        description: `有${expiry.length}个待办即将到期，请留意截止时间`,
+        description: `有${expirings.length}个待办即将到期，请留意截止时间`,
         placement: "top",
       });
   };
 
   useEffect(() => {
     openNotification(expirings as TYPE.Todo[]);
-  }, []);
+  }, [expirings]);
 
   const items: TabsProps["items"] = [
     {

@@ -125,7 +125,7 @@ const EditLabel: React.FC<EditLabelProps> = ({
             onChange={(e) =>
               setInitValue({
                 ...initValue,
-                name: e.target.value,
+                value: e.target.value,
               })
             }
           />

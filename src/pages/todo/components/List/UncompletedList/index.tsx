@@ -68,6 +68,9 @@ const UncompletedList: React.FC<ListProps> = ({
       title: "截止时间",
       dataIndex: "deadline",
       key: "deadline",
+      render: (deadline) => {
+        return <span>{deadline ? deadline : "无限制"}</span>;
+      },
     },
     {
       title: "标签",
