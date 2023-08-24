@@ -4,8 +4,10 @@
 - umi-max
 - antd
 - antd G2Plot
+- Swiper
 - ahooks
 - lodash
+
 
 ## 0.1 
 
@@ -73,7 +75,13 @@
 - 修复关闭添加待办时， switch 状态没重置
 - 修复查看待办时，如果截止时间和提醒时间为 undefined 时展示 span 文字
 - 修复标签管理中查阅标签时标签名称为空
-- 修改待办中时间类型undefined，utils 中的 formateTime 有小问题，后续解决
+- 当任务为不限制 deadline 时 Table 显示无限制
+- 修复：当任务已完成时还在逾期代办列表中
+- 修复：未能正确获取未逾期待办
+- 修复：待办提醒失效
+- 修复：JSON 数据 undefined 问题
+- 修复：标签名修改不生效
+
 ## 未来版本 
 
 - 添加视图切换，列表 - 卡片 - 日历

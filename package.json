@@ -21,7 +21,8 @@
     "lodash": "^4.17.21",
     "mockjs": "^1.1.0",
     "moment": "^2.29.4",
-    "react-countup": "^6.4.2"
+    "react-countup": "^6.4.2",
+    "swiper": "^10.2.0"
   },
   "devDependencies": {
     "@types/mockjs": "^1.0.7",
