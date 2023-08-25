@@ -91,7 +91,13 @@ const EditLabel: React.FC<EditLabelProps> = ({
       size="large"
       extra={
         <Space>
-          <Button onClick={() => setOpen(false)}>关闭</Button>
+          {type === "EDIT" ? (
+            <Button onClick={() => setOpen(false)}>关闭</Button>
+          ) : (
+            <Button danger onClick={() => setOpen(false)}>
+              删除
+            </Button>
+          )}
           {type === "EDIT" ? (
             <Button type="primary" onClick={() => onSave()}>
               保存

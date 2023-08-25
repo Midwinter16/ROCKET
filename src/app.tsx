@@ -1,8 +1,9 @@
 // 运行时配置
+import "@/components/Tracer"; // 点击行为跟踪
 import { LoginOutlined } from "@ant-design/icons";
 import { ConfigProvider, Dropdown } from "antd";
-import rocket from "./assets/rocket.svg";
 import "swiper/css";
+import rocket from "./assets/rocket.svg";
 
 // 全局初始化数据配置，用于 Layout 用户信息和权限初始化
 // 更多信息见文档：https://umijs.org/docs/api/runtime-config#getinitialstate

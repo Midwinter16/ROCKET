@@ -113,3 +113,92 @@ const HomePage: React.FC = () => {
 
 例如：coverflowEffect 模组需要设置 effect 字段为 coverflow
 
+
+# Webpack
+
+现代 JavaScript 应用程序的静态模块打包器
+
+分析项目结构，找到JavaScript模块以及其它的一些浏览器不能直接运行的拓展语言（Scss，TypeScript等），并将其打包为合适的格式以供浏览器使用。
+
+## 作用
+
+1、减少请求，来达到减少性能消耗以及用户体验。从上面定义我们就可以知道，Webpack 可以将很多静态资源打包整合到一起，以前请求接口会有很多链接地址，每次请求都会向服务器询问，然后服务器返回需要js等，要是很多静态资源，将会请求很多，影响性能以及用户的体验，Webpack可以将打包的资源整合
+
+2、将es6语法转变成es5语法，兼容老浏览器。一些老的终端机中的浏览器，兼容不到es6语法，可以通过Webpack来打包，转换成兼容的es5写法，例如es6的箭头函数等。
+
+3、增强项目生命力，增强代码隐蔽性。不单单请求少了，性能提高了，还可以将静态资源图片、页面以及css等打包压缩，早期项目都是直接暴露出来，所以安全性隐蔽性不高，Webpack还可以提供丰富的插件。
+
+# 问题
+
+## 性能优化
+
+### 通用优化
+
+#### 懒加载
+
+懒加载优化一般用于从一个路由跳转到另一个路由
+
+懒加载的实现是通过 Webpack 的动态导入和 `React.lazy` 方法
+
+懒加载不仅要考虑加载态，还要考虑加载失败之后的兜底容错
+
+```jsx
+import { Component, Suspense, lazy } from "react";
+
+// 对加载失败进行容错处理
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <h1>这里处理出错场景</h1>;
+    }
+
+    return this.props.children;
+  }
+}
+
+const Comp = lazy(() => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (Math.random() > 0.5) {
+        reject(new Error("模拟网络出错"));
+      } else {
+        resolve(import("../todo/index"));
+      }
+    }, 2000);
+  });
+});
+
+export default function HomePage() {
+  return (
+    <div className="App">
+      <div style={{ marginBottom: 20 }}>
+        实现懒加载优化时，不仅要考虑加载态，还需要对加载失败进行容错处理。
+      </div>
+      <ErrorBoundary>
+        <Suspense fallback="Loading...">
+          <Comp />
+        </Suspense>
+      </ErrorBoundary>
+    </div>
+  );
+}
+```
+
+
+
+## 缓存问题
+
+## 工程化
+
+## 业务组件怎么理解
+
+## 复杂业务组件怎么使其低耦合

@@ -1,0 +1,40 @@
+.swiper-container {
+  position: relative;
+  margin: auto;
+  .swiper-next-btn, .swiper-prev-btn{
+    font-size: 40px ;
+    text-align: center;
+    line-height: 100px;
+    color:black;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 99;
+    cursor: pointer;
+    transition: all 0.3s;
+    user-select: none;
+    &:hover{
+      color: #666;
+    }
+    width: 30px;
+    height: 60px;
+  }
+  .swiper-next-btn{
+    right: 0;
+    margin-right: 10px;
+  }
+  .swiper-prev-btn{
+    left: 0;
+    margin-left: 10px;
+  }
+  .swiper-active-bullet{
+    background-color: black;
+    opacity: 1;
+  }
+  .swiper-pagenation-el{
+    background-color: #fff;
+    opacity: 1;
+  }
+}
