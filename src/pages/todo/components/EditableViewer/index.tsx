@@ -13,6 +13,7 @@ import {
 } from "antd";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
+import { unstable_batchedUpdates } from "react-dom";
 
 interface EditableViewerProps {
   open: boolean;
@@ -43,8 +44,10 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
   // 初始化表单值
   useEffect(() => {
     if (type === "VIEW") {
-      if (initialValue?.deadline) setDeadline(true);
-      if (initialValue?.remindTime) setRemindTime(true);
+      unstable_batchedUpdates(() => {
+        if (initialValue?.deadline) setDeadline(true);
+        if (initialValue?.remindTime) setRemindTime(true);
+      });
       form.setFieldsValue(initialValue);
     }
   }, [initialValue]);

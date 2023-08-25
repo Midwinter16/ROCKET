@@ -1,5 +1,5 @@
 import { Statistic, StatisticProps } from "antd";
-import { useCallback } from "react";
+import React, { useCallback } from "react";
 import CountUp from "react-countup";
 
 /**
