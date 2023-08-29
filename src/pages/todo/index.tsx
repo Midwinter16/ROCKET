@@ -1,3 +1,4 @@
+import { DrawerMode } from "@/constants";
 import { useModel } from "@umijs/max";
 import type { TabsProps } from "antd";
 import { Button, Col, Row, Space, Tabs, notification } from "antd";
@@ -160,13 +161,13 @@ const Todo = () => {
         open={editOpen}
         setOpen={setEditOpen}
         title="新增待办"
-        type="EDIT"
+        type={DrawerMode.EDIT}
       ></EditableViewer>
       <EditableViewer
         open={viewOpen}
         setOpen={setViewOpen}
         title="查看详情"
-        type="VIEW"
+        type={DrawerMode.VIEW}
         initialValue={initValue}
       ></EditableViewer>
       <LabelDrawer open={labelOpen} setOpen={setlabelOpen}></LabelDrawer>
