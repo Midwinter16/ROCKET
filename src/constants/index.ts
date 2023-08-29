@@ -51,3 +51,8 @@ export const COLOR = [
     name: "天空蓝",
   },
 ];
+export enum DrawerMode {
+  CREATE,
+  EDIT,
+  VIEW,
+}

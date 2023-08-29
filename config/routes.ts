@@ -1,16 +1,21 @@
 export default [
   {
-    path: '/',
-    redirect: '/home',
+    path: "/",
+    redirect: "/home",
   },
   {
-    name: '首页',
-    path: '/home',
-    component: './home',
+    name: "首页",
+    path: "/home",
+    component: "./home",
   },
   {
-    name: 'Todo',
-    path: '/todo',
-    component: './todo',
-  }
-]
+    name: "Todo",
+    path: "/todo",
+    component: "./todo",
+  },
+  {
+    name: "test",
+    path: "/test",
+    component: "./test",
+  },
+];

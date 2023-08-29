@@ -36,6 +36,46 @@
 
 console.trace：打印函数的调用关系
 
+# TypeScript
+
+## Pick
+
+从一个复合类型中，取出几个想要的类型的组合，如下
+
+```js
+Pick<API.SchemePageVo, 'versionId' | 'connectionId' | 'hasSuperToken' | 'project'>)
+```
+
+## Omit
+
+用于创建一个新类型，该类型从另一个类型中排除指定的属性。
+
+```js
+Omit<T, K>
+```
+
+其中，`T`表示源类型，`K`表示要从源类型中排除的属性。
+
+如果你想要同时排除多个属性，可以在 `Omit` 类型中使用【联合类型】来列出要排除的属性
+
+**export type CanvasEditCache = Omit< SFCanvasDetail, 'component_edge_list' | 'layout_placeholder_data' >**
+
+上面这段代码的意思是从SFCanvasDetail中排除掉component_edge_list【和】layout_placeholder_data
+
+## Partial
+
+可以将类型T的所有属性变为可选的。
+
+Partial<T>
+
+```js
+export declare type ModelStyle = Partial<{
+    [key: string]: unknown;
+    style: ShapeStyle;
+    stateStyles: StateStyles;
+}>;
+```
+
 # Swiper
 
 ## Swiper

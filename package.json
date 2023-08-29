@@ -25,6 +25,7 @@
     "swiper": "^10.2.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.197",
     "@types/mockjs": "^1.0.7",
     "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
