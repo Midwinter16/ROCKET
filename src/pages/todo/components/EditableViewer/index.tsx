@@ -91,7 +91,7 @@ const EditableViewer: React.FC<EditableViewerProps> = ({
       }}
       size="large"
       extra={
-        DrawerMode.EDIT ? (
+        DrawerMode.EDIT === type ? (
           <Space size="middle">
             <Button onClick={() => setOpen(false)}>取消</Button>
             <Button onClick={onSave} type="primary">
