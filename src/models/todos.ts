@@ -88,6 +88,7 @@ export default () => {
   const getUnexpireds = formatTodo(
     todos.filter((todo) => {
       const current = moment().valueOf();
+      if (todo.completed) return false;
       if (!todo.deadline) return true;
       if (todo.deadline) return current < todo.deadline;
       return false;
