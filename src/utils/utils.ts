@@ -45,3 +45,8 @@ export const JSONformat = (str: string) => {
     return value;
   });
 };
+
+export const spaceFont = (text: string) => {
+  if (text.length === 2) return `${text[0]} ${text[1]}`;
+  return text;
+};

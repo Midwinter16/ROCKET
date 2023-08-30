@@ -1,17 +1,16 @@
 import { Button } from "antd";
 
 interface testProps {
-  name?:string
+  name?: string;
 }
 
 type testProps1 = {
-  name?:string
-}
+  name?: string;
+};
 
-const testname:testProps1 = {
-  name:"nihao"
-}
-console.log(testname)
+const testname: testProps1 = {
+  name: "nihao",
+};
 
 const HomePage = () => {
   const list = new Array(30).fill(0).map((item, index) => index);
