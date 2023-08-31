@@ -10,12 +10,15 @@ import {
 } from "../assets/constants";
 import MainSwiper from "../components/MainSwiper";
 import SearchSwiper from "../components/SeachSwiper";
+import styles from "./index.less";
 
 const HomePage = () => {
+  // mock
   const loopText = ["全家守护日", "年轻人保障计划", "家校有招"];
   return (
-    <div>
-      <Row style={{ margin: "10px" }} justify="space-between">
+    <div className={styles["home-body"]}>
+      {/* 头部工具栏 */}
+      <Row justify="space-between">
         <Col span={2}>
           <SIcon size="small" icon={saoyisaoIcon}></SIcon>
         </Col>

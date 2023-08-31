@@ -14,6 +14,8 @@ import yingpiaoIcon from "@/assets/yingpiao.svg";
 import zonglanIcon from "@/assets/zonglan.svg";
 import { SIconProps } from "@/components/SIcon";
 
+export const ScreenProtectTime = 2000;
+
 export const MainBusiness: Omit<SIconProps[], "count"> = [
   {
     title: "朝朝宝",

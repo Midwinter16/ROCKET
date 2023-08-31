@@ -1,0 +1,27 @@
+@import "../assets/constans.less";
+
+.ad-body {
+  width: @phone-width;
+  height: @phone-height;
+  position: relative;
+}
+
+.count-down {
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 10px;
+  border: 1px solid #bbb;
+  height: 30px;
+  width: 100px;
+  border-radius: 30px;
+  justify-content: space-around;
+  line-height: 30px;
+
+  .count-down-text {
+    text-align: center;
+    flex: 4;
+    border-right: 1px solid #bbb;
+  }
+}

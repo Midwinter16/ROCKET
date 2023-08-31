@@ -1,8 +1,12 @@
-.bankBody {
-  width: 420px;
-  height: 900px;
+@import "./assets/constans.less";
+
+.bank-body {
+  width: @phone-width;
+  height: @phone-height;
   position: relative;
   margin: 0 auto;
   display: block;
-  border: 1px solid #aaa;
+  outline: 1px solid #aaa;
+  overflow: hidden;
+  overflow-y: auto;
 }
