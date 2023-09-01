@@ -67,4 +67,9 @@ export default [
       },
     ],
   },
+  {
+    name: "合并型 Table",
+    path: "/mergeTable",
+    component: "./mergeTable",
+  },
 ];
