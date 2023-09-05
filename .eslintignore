@@ -1,0 +1,17 @@
+.vscode
+
+dist
+
+node_modules/*
+
+src/assets/*
+
+src/.umi/*
+
+src/utils/*
+
+.eslintrc.js
+
+.eslintrc.cjs
+
+.gitignore
