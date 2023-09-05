@@ -11,3 +11,9 @@
 /dist
 /.mfsu
 .swc
+
+.npmrc
+
+package-lock.json
+
+yarn-error.log
