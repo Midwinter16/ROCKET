@@ -30,20 +30,44 @@
 //   },
 // ];
 
+import { SideBarList } from "../src/pages/community/constants/index";
+
 export default [
   {
     path: "/",
-    redirect: "/home",
-  },
-  {
-    name: "二楼效果测试页面",
-    path: "/home",
-    component: "./home",
+    redirect: "/todo",
   },
   {
     name: "Todo",
     path: "/todo",
     component: "./todo",
+  },
+  {
+    name: "社区",
+    path: "/community",
+    component: "./community",
+    hideChildrenInMenu: true,
+    routes: [
+      {
+        path: "",
+        redirect: "/community/main/composite",
+      },
+      {
+        name: "社区主页",
+        path: "/community/main",
+        component: "./community/pages/main",
+        routes: SideBarList.map((item) => ({
+          name: item.cname,
+          path: `/community/main/${item.name}`,
+          component: "./community/pages/main/MainBody",
+        })),
+      },
+      {
+        name: "编辑页",
+        path: "/community/edit",
+        component: "./community/pages/edit",
+      },
+    ],
   },
   {
     name: "招商银行",
@@ -68,8 +92,35 @@ export default [
     ],
   },
   {
-    name: "合并型 Table",
-    path: "/mergeTable",
-    component: "./mergeTable",
+    name: "轮子",
+    path: "/wheel",
+    component: "./wheel",
+    routes: [
+      {
+        name: "二楼",
+        path: "secondFloor",
+        component: "./wheel/wheels/secondFloor",
+      },
+      {
+        name: "合并式表格",
+        path: "mergeTable",
+        component: "./wheel/wheels/mergeTable",
+      },
+      {
+        name: "类型筛选框",
+        path: "filterCheckbox",
+        component: "./wheel/wheels/filterCheckbox",
+      },
+      {
+        name: "瀑布",
+        path: "waterfalls",
+        component: "./wheel/wheels/waterfalls",
+      },
+      {
+        name: "复制粘贴",
+        path: "copy",
+        component: "./wheel/wheels/copy",
+      },
+    ],
   },
 ];

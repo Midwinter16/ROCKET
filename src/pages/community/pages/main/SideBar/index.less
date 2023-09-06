@@ -1,0 +1,31 @@
+@import '../../../../../assets/constants.less';
+
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+
+  .side-bar-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    color: #8c8c8c;
+    user-select: none;
+    cursor: pointer;
+    border-radius: 10px;
+
+    .active {
+      color: @app-blue-5;
+    }
+  }
+
+  .side-bar-item-active {
+    background-color: @app-blue-1;
+  }
+}
