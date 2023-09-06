@@ -41,6 +41,13 @@ export const layout = () => {
         );
       },
     },
+    token: {
+      pageContainer: {
+        paddingBlockPageContainerContent: 10,
+        paddingInlinePageContainerContent: 20,
+        colorBgPageContainer: "#f1f3f5",
+      },
+    },
     childrenRender: (children: any) => {
       return (
         <ConfigProvider input={{ autoComplete: "off" }}>

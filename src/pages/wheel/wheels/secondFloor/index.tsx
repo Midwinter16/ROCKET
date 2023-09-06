@@ -1,6 +1,13 @@
 import { useEffect } from "react";
 
-const HomePage = () => {
+/**
+ * 还没封装为组件，功能未完善
+ * - 实现动画滑动
+ * - 传递图片或文字
+ * - 封装
+ */
+
+const SecondFloor = () => {
   const moveObj = {
     start: 0,
     end: 0,
@@ -80,4 +87,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default SecondFloor;

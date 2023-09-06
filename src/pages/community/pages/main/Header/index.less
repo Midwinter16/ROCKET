@@ -1,0 +1,34 @@
+@import '../../../../../assets/constants.less';
+
+.header-container {
+  background-color: #fff;
+  padding: 5px;
+
+  .header-banner-item {
+    height: 100%;
+    font-size: 16px;
+    line-height: 42px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+
+    &:hover {
+      border-bottom: 1px solid @app-blue-5;
+      color: @app-blue-5;
+    }
+  }
+
+  .header-banner-item-active {
+    color: @app-blue-5;
+  }
+
+  .header-user {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding-right: 20px;
+    box-sizing: border-box;
+  }
+}

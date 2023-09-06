@@ -3,26 +3,56 @@
 @middle: 36px;
 @large: 42px;
 
+.sizeloop(@name, @size) {
+  .@{name} {
+    width: @size;
+    height: @size;
+  }
+}
+
+.spanloop(@name, @size) {
+  .span-@{name} {
+    line-height: @size;
+  }
+}
+
+@nameList: tiny, small, middle, large;
+@sizeList: 24px, 30px, 36px, 42px;
+
+
+.loop(@i) when (@i<length(@sizeList)+1) { // less 的循环体是 loop 中，可以随意写多个 loop 函数
+  .sizeloop(extract(@nameList, @i), extract(@sizeList, @i));
+  .spanloop(extract(@nameList, @i), extract(@sizeList, @i));
+  .loop(@i+1)
+}
+
+.loop(1); // 从第一个开始，而不是 js 中的 0 为下标开始
+
 .sicon {
+  height: 100%;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.tiny {
-  width: @tiny;
-  height: @tiny;
-}
-.small {
-  width: @small;
-  height: @small;
-}
-.middle {
-  width: @middle;
-  height: @middle;
-}
-.large {
-  width: @large;
-  height: @large;
-}
+
+// .tiny {
+//   width: 24px;
+//   height: 24px;
+// }
+
+// .small {
+//   width: 30px;
+//   height: 30px;
+// }
+
+// .middle {
+//   width: 36px;
+//   height: 36px;
+// }
+
+// .large {
+//   width: 42px;
+//   height: 42px;
+// }
