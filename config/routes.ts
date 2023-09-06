@@ -70,7 +70,7 @@ export default [
       {
         name: "登录页",
         path: "/community/login",
-        component: "./community/pages/main/Login",
+        component: "./community/pages/login",
       },
     ],
   },

@@ -1,9 +1,8 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
-import React from "react";
 import styles from "./index.less";
 
-const App: React.FC = () => {
+const Login = () => {
   const onFinish = (values: any) => {
     console.log("完成表格: ", values);
   };
@@ -60,4 +59,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default Login;
