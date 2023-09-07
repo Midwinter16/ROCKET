@@ -161,24 +161,82 @@
   - 右侧信息栏完善
 
 
-## 未来版本 
+## todo 
 
 - 全局
   - [ ] Trace：点击行为跟踪上报，统计用户行为，要在用户登录和用户页面的基础上做
-  - [ ] SSwiper：更高度封装的 Swiper 组件，最大限度方便使用
   - [ ] 用户相关，登录，退出，设置，数据统计
+    - @hsh 已完成用户登录初始化界面，仅限于 community 下
   - [ ] 完善 ErrorBoundary
-  - [x] less 引用使用 alias 来代替 src 路径
+  - [x] 统一所有资源路径，使用 alias 引入
+    - icons：/src/assets/icons --- alias @icons
+    - imgs：/src/assets/imgs --- alias @imgs
+    - style：/src/assets/style --- alias @style
 - todo
   - [ ] 添加视图切换，列表 - 卡片 - 日历
   - [ ] 待办类型增加：重复型的任务
   - [ ] 任务类型过滤
 - community
+  - [ ] 设计数据结构，内容包含
+    - 标签含义 uniq唯一 limit最大长度 undefined非必填 src图片地址 rich富文本
+    - [x] 用户 User
+      - 用户 id - id - number(uniq)
+      - 昵称 - cname - string(limit 12)
+      - 用户名 - name - string(uniq limit 12)
+      - 用户密码 - password - string(limit 12)
+      - 头像 - icon - string(src)
+      - 个人简介 - description - string(limit 100)
+      - [x] 额外信息 - otherInfo - OtherInfo
+      - [ ] 用户行为追踪 - track - Track
+      - 头衔 - title - string[]
+      - 关注的标签 - followLabel - string[]
+      - 关注的用户 - followUser - User[]
+      - 发表的文章 - articleList - Article[]
+      - 点赞的文章 - likeArticleList - Article[]
+      - 收藏的文章 - favoriteArticleList - Article[]
+      - 评论的文章 - commentArticleList - Article[]
+    - [x] 用户其他信息 OtherInfo
+      - 性别 - sex - "MAN" | "WOMAN" | "SECRET"(undefined)
+      - 年龄 - age - number | 'SECRET'(undefined)
+      - 兴趣标签 - likeList - string[](limit 5)
+      - 职业信息 - job - string(undefined)
+    - [ ] 行为追踪 Track
+      - 待考虑
+    - [x] 文章 Article
+      - 文章 id - id - number(uniq)
+      - 标题 - title - string(uniq limit 20)
+      - 摘要 - abstract - string(limit 20 undefined) - 如果是非填写可以取正文的前 20 个字符
+      - 作者 id - creatorId - User.id
+      - 发布时间 - createTime - new Date
+      - 更新时间 - updateTime - new Date
+      - 封面图片 - cover - string(src)
+      - 标签(分类) - label - string[] - 至少一个预定义标签
+      - 浏览量 - reads - number
+      - 点赞量 - likes - number
+      - 评论列表 - commentList - Comment[]
+      - 内容 - content - string(rich)
+    - [x] 评论 Comment
+      - 评论 id - id - number(uniq)
+      - 关联类型 - relate - "ARTICLE" | "COMMENT" - 评论可以在评论下追加，也可以评论文章
+      - 关联id -  relateId - Article.id ｜ Comment.id
+      - 评论人 id - commentorId - User.id
+      - 评论时间 - createTime - new Date
+      - 评论内容 - content - string
+      - 点赞量 - likes - number
+      - 回复列表 - commentList - Comment.id[]
+      - 评论状态 - status - "DELETE" | "BAN" | "NORMAL" - 用户未来在用户数据平台查看评论的生命周期和状态
+    - [x] 标签 Label
+      - 标签名 - label - string
+      - 标签值 - value - string
   - [ ] 用户埋点
-    - [ ] 收集用户点击信息，可以后续放在后台管理数据页面中进行展示
+    - 收集用户点击信息，可以后续放在后台管理数据页面中进行展示
   - [ ] 后台管理数据页面
+    - [ ] 各用户数据展示
+      - [ ]用户行为展示
+      - [ ]用户信息展示
     - [ ] 审批流程页面
-      - [ ] 文章提交审批流程页面
+      - [ ] 文章提交审批流程页面，包括预览、推进、驳回
+      - [ ] 文章审批流程显示，展示预发表文章状态
   - 主页面
     - [ ] 主体内容展示文章项，文章项内容包括标题，标题符号🔥，图片，摘要文字，作者，阅读数，点赞
     - [ ] 隔 10 个文章显示基于阅读偏好推荐作者列表，建议用 swiper freedom 的形式展示
