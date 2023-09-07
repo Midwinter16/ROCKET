@@ -1,5 +1,6 @@
 import { defineConfig } from "@umijs/max";
 import routes from "./routes";
+const path = require("path");
 
 export default defineConfig({
   antd: {},
@@ -19,4 +20,7 @@ export default defineConfig({
   routes,
   npmClient: "pnpm",
   dva: {},
+  alias: {
+    "@less": "/src/assets/constants.less",
+  },
 });
