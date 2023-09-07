@@ -50,7 +50,16 @@ export const layout = () => {
     },
     childrenRender: (children: any) => {
       return (
-        <ConfigProvider input={{ autoComplete: "off" }}>
+        <ConfigProvider
+          theme={{
+            components: {
+              Tabs: {
+                titleFontSize: 18,
+              },
+            },
+          }}
+          input={{ autoComplete: "off" }}
+        >
           {children}
         </ConfigProvider>
       );

@@ -2,23 +2,23 @@ import { Outlet } from "@umijs/max";
 import { Col, Row } from "antd";
 
 import Header from "./Header";
+import Rank from "./Info";
 import SideBar from "./SideBar";
 import styles from "./index.less";
-import Rank from "./Rank";
 
 const Main = () => {
   return (
     <div className={styles["body-container"]}>
       <Header></Header>
       <div className={styles["body-main"]}>
-        <Row gutter={30}>
-          <Col span={5}>
+        <Row gutter={20}>
+          <Col flex="300px">
             <SideBar />
           </Col>
-          <Col span={14} className="main">
+          <Col flex="auto" className="main">
             <Outlet></Outlet>
           </Col>
-          <Col span={5}>
+          <Col flex="300px">
             <Rank></Rank>
           </Col>
         </Row>
