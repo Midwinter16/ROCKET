@@ -1,4 +1,3 @@
-
 # README
 
 ## 工具
@@ -160,6 +159,15 @@
   - 主页面改成侧栏固定宽度
   - 右侧信息栏完善
 
+## 1.5.0
+### dev
+- community
+  - 设计数据结构
+  - 主页面文章视图栏
+    - 导入 mock 数据
+    - 设置其随着宽度变化变化文字缩略
+      - 这里思路卡住了，暂时不清楚怎么解决自适应变化宽度，可能可以直接设置 col 的宽度为变换的宽度
+      - 已解决，将 row 设置为不允许自动换行，并且将设置宽度的方法 delay200，等待 dom 完全加载完成后再设置宽度
 
 ## todo 
 
@@ -184,50 +192,54 @@
       - 昵称 - cname - string(limit 12)
       - 用户名 - username - string(uniq limit 12)
       - 用户密码 - password - string(limit 12)
-      - 头像 - icon - string(src)
+      - 头像 - avatar - string(src)
       - 个人简介 - description - string(limit 100)
-      - [x] 额外信息 - otherInfo - OtherInfo
+      - [x] 额外信息 - other_info - OtherInfo
       - [ ] 用户行为追踪 - track - Track
       - 头衔 - titles - string[]
-      - 关注的标签 - followLabel - Label[]
-      - 关注的用户 - followUser - User.id[]
-      - 发表的文章 - articleList - Comment.id[]
-      - 点赞的文章 - likeArticleList - Comment.id[]
-      - 收藏的文章 - favoriteArticleList - Comment.id[]
-      - 评论的文章 - commentArticleList - Comment.id[]
+      - 关注的标签 - follow_labels - Label[]
+      - 关注的用户 - follow_users - User.id[]
+      - 发表的文章 - articles - Comment.id[]
+      - 点赞的文章 - like_articles - Comment.id[]
+      - 收藏的文章 - favorite_articles - Comment.id[]
+      - 评论的文章 - comment_articles - Comment.id[]
     - [x] 用户其他信息 OtherInfo
       - 性别 - sex - "male" | "female" | "secret"(undefined)
       - 年龄 - age - number | 'secret'(undefined)
-      - 兴趣标签 - likeList - string[](limit 5)
-      - 职业信息 - job - string(undefined)
+      - 兴趣标签 - likes - string[](limit 5)
+      - 职业信息 - career - string(undefined)
     - [ ] 行为追踪 Track
       - 待考虑
     - [x] 文章 Article
       - 文章 id - id - number(uniq)
       - 标题 - title - string(uniq limit 20)
       - 摘要 - abstract - string(limit 20 undefined) - 如果是非填写可以取正文的前 20 个字符
-      - 作者 id - creatorId - User.id
-      - 发布时间 - createTime - new Date
-      - 更新时间 - updateTime - new Date
+      - 作者 id - author_id - User.id
+      - 发布时间 - create_at - new Date
+      - 更新时间 - update_at - new Date
       - 封面图片 - cover - string(src)
-      - 标签(分类) - label - string[] - 至少一个预定义标签
-      - 浏览量 - reads - number
-      - 点赞量 - likes - number
-      - 评论列表 - commentList - Comment.id[]
+      - 标签(分类) - labels - string[] - 至少一个预定义标签
+      - 浏览量 - read - number
+      - 点赞量 - like - number
+      - 评论列表 - comments - Comment.id[]
       - 内容 - content - string(rich)
     - [x] 评论 Comment
       - 评论 id - id - number(uniq)
       - 关联类型 - relate - "article" | "comment" - 评论可以在评论下追加，也可以评论文章
-      - 关联id -  relateId - Article.id ｜ Comment.id
-      - 评论人 id - commentorId - User.id
-      - 评论时间 - createTime - new Date
+      - 关联id -  relate_id - Article.id ｜ Comment.id
+      - 评论人 id - commentor_id - User.id
+      - 评论时间 - create_at - new Date
       - 评论内容 - content - string
-      - 点赞量 - likes - number
-      - 回复列表 - commentList - Comment.id[]
+      - 点赞量 - like - number
+      - 回复列表 - comments - Comment.id[]
       - 评论状态 - status - "delete" | "ban" | "normal" - 用户未来在用户数据平台查看评论的生命周期和状态
     - [x] 标签 Label
       - 标签名 - label - string
       - 标签值 - value - string
+    - [x] 类目 Catelog
+      - 类目名 - label - string
+      - 类目值 - value - string
+      - 标签组 - labels - Label[]
   - [ ] 用户埋点
     - 收集用户点击信息，可以后续放在后台管理数据页面中进行展示
   - [ ] 后台管理数据页面
@@ -240,6 +252,7 @@
   - 主页面
     - [ ] 主体内容展示文章项，文章项内容包括标题，标题符号🔥，图片，摘要文字，作者，阅读数，点赞
     - [ ] 隔 10 个文章显示基于阅读偏好推荐作者列表，建议用 swiper freedom 的形式展示
+    - [x] 主页面文章宽度监控，以改变 ellipsis 的字数
     - [ ] 工具栏（左侧）：基本完善，差滑动跟随（fixed）
     - [ ] 信息栏（右侧）：基本完善，差滑动跟随（fixed）
       - [ ] ListItem 组件缺少换一换，查看更多

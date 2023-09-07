@@ -28,18 +28,18 @@ export interface OtherInfo {
   sex: "male" | "female" | "secret";
   age: number | "secret";
   likes: string[];
-  job: string;
+  career: string;
 }
 
 export interface Article {
   id: number;
   title: string;
   abstract: string;
-  creator_id: number;
-  create_time: number;
-  update_time: number;
+  author_id: number;
+  create_at: number;
+  update_at: number;
   cover: string;
-  label: Label[];
+  labels: Label[];
   read: number;
   like: number;
   comments: number[];
@@ -51,14 +51,20 @@ export interface Comment {
   relate: "article" | "comment";
   relate_id: number;
   commentor_id: number;
-  create_time: number;
+  create_at: number;
   content: string;
-  likes: number;
-  comment_ids: number[];
+  like: number;
+  comments: number[];
   status: "delete" | "ban" | "normal";
 }
 
 export interface Label {
   label: string;
   value: string;
+}
+
+export interface Catelog {
+  label: string;
+  value: string;
+  labels: Label[];
 }
