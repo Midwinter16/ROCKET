@@ -1,4 +1,4 @@
-import sousuoIcon from "@/assets/sousuo.svg";
+import sousuoIcon from "@icons/sousuo.svg";
 import SIcon from "@/components/SIcon";
 import { Col, Row } from "antd";
 import "swiper/less";

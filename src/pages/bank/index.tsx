@@ -1,4 +1,4 @@
-import zhaoshangyinhangIcon from "@/assets/zhaoshangyinhag.svg";
+import zhaoshangyinhangIcon from "@icons/zhaoshangyinhag.svg";
 import SIcon from "@/components/SIcon";
 import { MockDelay } from "@/utils/utils";
 import { Outlet } from "@umijs/max";

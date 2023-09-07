@@ -1,6 +1,6 @@
 import SIcon from "@/components/SIcon";
-import articleIcon from "@/pages/community/assets/imgs/article.svg";
-import userIcon from "@/pages/community/assets/imgs/user.svg";
+import articleIcon from "@icons/article.svg";
+import userIcon from "@icons/user.svg";
 import { Card } from "antd";
 import styles from "./index.less";
 

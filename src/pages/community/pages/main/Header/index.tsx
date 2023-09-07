@@ -1,10 +1,10 @@
-import rocketIcon from "@/assets/rocket.svg";
+import rocketIcon from "@icons/rocket.svg";
 import SIcon from "@/components/SIcon";
 import { HeaderBannerList } from "@/pages/community/constants";
 import { Button, Col, Input, Row, Space } from "antd";
 import { useState } from "react";
 import { history } from "umi";
-import vipIcon from "../../../assets/imgs/vip.svg";
+import vipIcon from "@icons/vip.svg";
 import styles from "./index.less";
 
 const Header = () => {

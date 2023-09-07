@@ -3,8 +3,8 @@ import { SideBarList } from "@/pages/community/constants";
 import { useMemoizedFn } from "ahooks";
 import { useState } from "react";
 import { history } from "umi";
-import * as icons from "../../../assets/imgs/index";
 import styles from "./index.less";
+import * as icons from '@/assets/icons/index'
 
 const SideBar = () => {
   const inactiveList = Object.values(icons.default.inactive);

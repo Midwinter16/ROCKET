@@ -1,4 +1,4 @@
-import jiantouxiaIcon from "@/assets/jiantouxia.svg";
+import jiantouxiaIcon from "@icons/jiantouxia.svg";
 import { spaceFont } from "@/utils/utils";
 import { Col, Input, Row, Space } from "antd";
 import { useState } from "react";

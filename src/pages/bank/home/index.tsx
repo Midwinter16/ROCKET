@@ -1,6 +1,6 @@
-import kefuIcon from "@/assets/kefu.svg";
-import saoyisaoIcon from "@/assets/saoyisao.svg";
-import shoujianIcon from "@/assets/shoujian.svg";
+import kefuIcon from "@icons/kefu.svg";
+import saoyisaoIcon from "@icons/saoyisao.svg";
+import shoujianIcon from "@icons/shoujian.svg";
 import SIcon from "@/components/SIcon";
 import { Col, Row, Space } from "antd";
 import {

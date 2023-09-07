@@ -1,12 +1,12 @@
 import { DrawerMode } from "@/constants";
+import completedIcon from "@icons/completed.svg";
+import expiredIcon from "@icons/expired.svg";
+import statisticsIcon from "@icons/statistics.svg";
+import unexpiredIcon from "@icons/unexpired.svg";
 import { useModel } from "@umijs/max";
 import type { TabsProps } from "antd";
 import { Button, Col, Row, Space, Tabs, notification } from "antd";
 import { useEffect, useState } from "react";
-import completedIcon from "../../assets/completed.svg";
-import expiredIcon from "../../assets/expired.svg";
-import statisticsIcon from "../../assets/statistics.svg";
-import unexpiredIcon from "../../assets/unexpired.svg";
 import EditableViewer from "./components/EditableViewer";
 import LabelDrawer from "./components/LabelDrawer";
 import CompletedList from "./components/List/CompletedList";
