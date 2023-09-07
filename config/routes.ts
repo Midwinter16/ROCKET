@@ -67,6 +67,11 @@ export default [
         path: "/community/edit",
         component: "./community/pages/edit",
       },
+      {
+        name: "登录页",
+        path: "/community/login",
+        component: "./community/pages/login",
+      },
     ],
   },
   {
