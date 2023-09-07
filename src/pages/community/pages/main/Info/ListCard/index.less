@@ -1,0 +1,71 @@
+@import '../../../../../../assets//constants.less';
+
+.card-body {
+
+  .body-header {
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  }
+
+  .body-footer {
+    text-align: center;
+    line-height: 20px;
+    height: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    box-sizing: content-box;
+  }
+}
+
+.user-item {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .user-item-text {
+    padding: 0 10px;
+    flex-grow: 1;
+  }
+
+  .user-item-follow {
+    color: @app-blue-5;
+  }
+}
+
+.article-item {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .article-item-title {
+    flex-grow: 1;
+  }
+}
+
+.topic-item {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .topic-item-title {
+    flex-grow: 1;
+    line-height: 20px;
+  }
+
+  .topic-item-label {
+    margin-right: 7px;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(to bottom left, @app-blue-5, @app-blue-2);
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    color: aliceblue;
+  }
+}
