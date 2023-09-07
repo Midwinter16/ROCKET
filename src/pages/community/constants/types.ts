@@ -14,20 +14,20 @@ export interface User {
   password: string;
   icon: string;
   description: string;
-  otherInfo: OtherInfo;
+  other_info: OtherInfo;
   title: string[];
-  followLabel: Label[];
-  followUser: User[];
-  articleList: Article[];
-  likeArticleList: Article[];
-  favoriteArticleList: Article[];
-  commentArticleList: Article[];
+  follow_label: Label[];
+  follow_user: User[];
+  article_list: Article[];
+  likeArticle_list: Article[];
+  favoriteArticle_list: Article[];
+  commentArticle_list: Article[];
 }
 
 export interface OtherInfo {
   sex: "MAN" | "WOMAN" | "SECRET";
   age: number | "SECRET";
-  likeList: string[];
+  like_list: string[];
   job: string;
 }
 
@@ -35,26 +35,26 @@ export interface Article {
   id: number;
   title: string;
   abstract: string;
-  creatorId: number;
-  createTime: number;
-  updateTime: number;
+  creator_id: number;
+  create_time: number;
+  update_time: number;
   cover: string;
   label: Label[];
   reads: number;
   likes: number;
-  commentList: Comment[];
+  comment_list: Comment[];
   content: string;
 }
 
 export interface Comment {
   id: number;
   relate: "ARTICLE" | "COMMENT";
-  relateId: number;
-  commentorId: number;
-  createTime: number;
+  relate_id: number;
+  commentor_id: number;
+  create_time: number;
   content: string;
   likes: number;
-  commentList: Comment[];
+  comment_list: Comment[];
   status: "DELETE" | "BAN" | "NORMAL";
 }
 
