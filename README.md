@@ -182,22 +182,22 @@
     - [x] 用户 User
       - 用户 id - id - number(uniq)
       - 昵称 - cname - string(limit 12)
-      - 用户名 - name - string(uniq limit 12)
+      - 用户名 - username - string(uniq limit 12)
       - 用户密码 - password - string(limit 12)
       - 头像 - icon - string(src)
       - 个人简介 - description - string(limit 100)
       - [x] 额外信息 - otherInfo - OtherInfo
       - [ ] 用户行为追踪 - track - Track
-      - 头衔 - title - string[]
-      - 关注的标签 - followLabel - string[]
-      - 关注的用户 - followUser - User[]
-      - 发表的文章 - articleList - Article[]
-      - 点赞的文章 - likeArticleList - Article[]
-      - 收藏的文章 - favoriteArticleList - Article[]
-      - 评论的文章 - commentArticleList - Article[]
+      - 头衔 - titles - string[]
+      - 关注的标签 - followLabel - Label[]
+      - 关注的用户 - followUser - User.id[]
+      - 发表的文章 - articleList - Comment.id[]
+      - 点赞的文章 - likeArticleList - Comment.id[]
+      - 收藏的文章 - favoriteArticleList - Comment.id[]
+      - 评论的文章 - commentArticleList - Comment.id[]
     - [x] 用户其他信息 OtherInfo
-      - 性别 - sex - "MAN" | "WOMAN" | "SECRET"(undefined)
-      - 年龄 - age - number | 'SECRET'(undefined)
+      - 性别 - sex - "male" | "female" | "secret"(undefined)
+      - 年龄 - age - number | 'secret'(undefined)
       - 兴趣标签 - likeList - string[](limit 5)
       - 职业信息 - job - string(undefined)
     - [ ] 行为追踪 Track
@@ -213,18 +213,18 @@
       - 标签(分类) - label - string[] - 至少一个预定义标签
       - 浏览量 - reads - number
       - 点赞量 - likes - number
-      - 评论列表 - commentList - Comment[]
+      - 评论列表 - commentList - Comment.id[]
       - 内容 - content - string(rich)
     - [x] 评论 Comment
       - 评论 id - id - number(uniq)
-      - 关联类型 - relate - "ARTICLE" | "COMMENT" - 评论可以在评论下追加，也可以评论文章
+      - 关联类型 - relate - "article" | "comment" - 评论可以在评论下追加，也可以评论文章
       - 关联id -  relateId - Article.id ｜ Comment.id
       - 评论人 id - commentorId - User.id
       - 评论时间 - createTime - new Date
       - 评论内容 - content - string
       - 点赞量 - likes - number
       - 回复列表 - commentList - Comment.id[]
-      - 评论状态 - status - "DELETE" | "BAN" | "NORMAL" - 用户未来在用户数据平台查看评论的生命周期和状态
+      - 评论状态 - status - "delete" | "ban" | "normal" - 用户未来在用户数据平台查看评论的生命周期和状态
     - [x] 标签 Label
       - 标签名 - label - string
       - 标签值 - value - string

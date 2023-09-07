@@ -10,24 +10,24 @@ export interface ItemList {
 export interface User {
   id: number;
   cname: string;
-  name: string;
+  username: string;
   password: string;
-  icon: string;
+  avatar: string;
   description: string;
   other_info: OtherInfo;
-  title: string[];
-  follow_label: Label[];
-  follow_user: User[];
-  article_list: Article[];
-  likeArticle_list: Article[];
-  favoriteArticle_list: Article[];
-  commentArticle_list: Article[];
+  titles: string[];
+  follow_labels: Label[];
+  follow_users: number[];
+  articles: number[];
+  like_articles: number[];
+  favorite_articles: number[];
+  comment_articles: number[];
 }
 
 export interface OtherInfo {
-  sex: "MAN" | "WOMAN" | "SECRET";
-  age: number | "SECRET";
-  like_list: string[];
+  sex: "male" | "female" | "secret";
+  age: number | "secret";
+  likes: string[];
   job: string;
 }
 
@@ -40,22 +40,22 @@ export interface Article {
   update_time: number;
   cover: string;
   label: Label[];
-  reads: number;
-  likes: number;
-  comment_list: Comment[];
+  read: number;
+  like: number;
+  comments: number[];
   content: string;
 }
 
 export interface Comment {
   id: number;
-  relate: "ARTICLE" | "COMMENT";
+  relate: "article" | "comment";
   relate_id: number;
   commentor_id: number;
   create_time: number;
   content: string;
   likes: number;
-  comment_list: Comment[];
-  status: "DELETE" | "BAN" | "NORMAL";
+  comment_ids: number[];
+  status: "delete" | "ban" | "normal";
 }
 
 export interface Label {
