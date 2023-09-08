@@ -1,6 +1,6 @@
 export const HeaderBannerList = ["首页", "直播", "活动"];
 
-export const SideBarList = [
+export const BarList = [
   {
     name: "focus",
     cname: "关注",
@@ -10,11 +10,11 @@ export const SideBarList = [
     cname: "综合",
   },
   {
-    name: "back-end",
+    name: "back_end",
     cname: "后端",
   },
   {
-    name: "front-end",
+    name: "front_end",
     cname: "前端",
   },
   {

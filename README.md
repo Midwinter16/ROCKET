@@ -167,7 +167,15 @@
     - 导入 mock 数据
     - 设置其随着宽度变化变化文字缩略
       - 这里思路卡住了，暂时不清楚怎么解决自适应变化宽度，可能可以直接设置 col 的宽度为变换的宽度
-      - 已解决，将 row 设置为不允许自动换行，并且将设置宽度的方法 delay200，等待 dom 完全加载完成后再设置宽度
+      - 已解决，将 row 设置为不允许自动换行，并且将设置宽度的方法,delay200，等待 dom 完全加载完成后再设置宽度。
+      - 还是有问题，如何处理 width 在 dom 加载完成后再赋值
+      - 最终通过在 model 中添加 loading 解决
+    - 添加随路由变化获取不同文章
+    - 设置侧边栏文章榜数据
+    - tabs select 接上数据
+    - 主页面宽度变化展示 sidebar 或 topbar
+    - 完善子选项
+  - 潜在问题：大部分的样式变化都是通过 js 来判断改变的，消耗问题要考虑一下，有没有什么合适的 css 方法来优化该段代码
 
 ## todo 
 
@@ -194,6 +202,7 @@
       - 用户密码 - password - string(limit 12)
       - 头像 - avatar - string(src)
       - 个人简介 - description - string(limit 100)
+      - 粉丝 - fans - number
       - [x] 额外信息 - other_info - OtherInfo
       - [ ] 用户行为追踪 - track - Track
       - 头衔 - titles - string[]

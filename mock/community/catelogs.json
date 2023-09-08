@@ -1,0 +1,130 @@
+{
+  "data": [
+    {
+      "name": "focus",
+      "cname": "关注",
+      "labels": [
+        {
+          "value": "all",
+          "label": "全部"
+        }
+      ]
+    },
+    {
+      "name": "composite",
+      "cname": "综合",
+      "labels": [
+        {
+          "value": "all",
+          "label": "全部"
+        }
+      ]
+    },
+    {
+      "name": "front_end",
+      "cname": "前端",
+      "labels": [
+        {
+          "value": "all",
+          "label": "全部"
+        },
+        {
+          "value": "javascript",
+          "label": "javascript"
+        },
+        {
+          "value": "react",
+          "label": "react"
+        }
+      ]
+    },
+    {
+      "name": "back_end",
+      "cname": "后端",
+      "labels": [
+        {
+          "value": "all",
+          "label": "全部"
+        },
+        {
+          "value": "python",
+          "label": "python"
+        },
+        {
+          "value": "java",
+          "label": "java"
+        }
+      ]
+    },
+    {
+      "name": "android",
+      "cname": "Android",
+      "labels": [
+        {
+          "value": "all",
+          "label": "全部"
+        }
+      ]
+    },
+    {
+      "name": "ios",
+      "cname": "IOS",
+      "labels": [
+        {
+          "value": "all",
+          "label": "全部"
+        }
+      ]
+    },
+    {
+      "name": "ai",
+      "cname": "人工智能",
+      "labels": [
+        {
+          "value": "all",
+          "label": "全部"
+        }
+      ]
+    },
+    {
+      "name": "tool",
+      "cname": "开发工具",
+      "labels": [
+        {
+          "value": "all",
+          "label": "全部"
+        }
+      ]
+    },
+    {
+      "name": "story",
+      "cname": "代码人生",
+      "labels": [
+        {
+          "value": "all",
+          "label": "全部"
+        }
+      ]
+    },
+    {
+      "name": "read",
+      "cname": "阅读",
+      "labels": [
+        {
+          "value": "all",
+          "label": "全部"
+        }
+      ]
+    },
+    {
+      "name": "rank",
+      "cname": "排行榜",
+      "labels": [
+        {
+          "value": "all",
+          "label": "全部"
+        }
+      ]
+    }
+  ]
+}

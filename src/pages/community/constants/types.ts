@@ -14,6 +14,7 @@ export interface User {
   password: string;
   avatar: string;
   description: string;
+  fans: number;
   other_info: OtherInfo;
   titles: string[];
   follow_labels: Label[];
@@ -64,7 +65,7 @@ export interface Label {
 }
 
 export interface Catelog {
-  label: string;
-  value: string;
+  name: string;
+  cname: string;
   labels: Label[];
 }

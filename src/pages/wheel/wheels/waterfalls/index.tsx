@@ -22,7 +22,6 @@ const Waterfalls: React.FC<WaterfallsProps> = ({ col, gap }) => {
   const el = useRef(null);
 
   const reader = new FileReader();
-  console.log(reader);
 
   // useEffect(() => {
   //   const list = [...el?.current?.children];
