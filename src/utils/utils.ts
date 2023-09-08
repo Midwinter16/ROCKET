@@ -59,3 +59,27 @@ export const MockDelay = (ms: number) => {
     setTimeout(resolve, ms);
   });
 };
+
+// 省略文字
+export const ellipsis = (text: string, count: number) => {
+  if (text.length > count) return `${text.slice(0, count)}...`;
+  return text;
+};
+
+// 省略大数字，适配到千万 kw
+export const approximate = (number: number) => {
+  if (number < 100) return number;
+  const bit = number.toString().split("");
+  switch (bit.length) {
+    case 3:
+      return `${Math.floor(number / 10)}0+`;
+    case 4:
+      return `${(number / 1000).toFixed(1)}k+`;
+    case 5:
+    case 6:
+    case 7:
+      return `${(number / 10000).toFixed(1)}w+`;
+    default:
+      return `${(number / 10000000).toFixed(1)}kw+`;
+  }
+};

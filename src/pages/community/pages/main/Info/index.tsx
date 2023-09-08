@@ -1,3 +1,4 @@
+import { useModel } from "@umijs/max";
 import { Button, Card, Space } from "antd";
 import moment from "moment";
 import ListCard from "./ListCard";
@@ -14,6 +15,9 @@ const Info = () => {
       ? "下午好"
       : "晚上好";
   };
+  const { getRankArticle } = useModel("community.articles");
+  const { getRankUser } = useModel("community.users");
+
   return (
     <div className={styles["rank-body"]}>
       <Space direction="vertical" style={{ width: "100%" }}>
@@ -28,9 +32,9 @@ const Info = () => {
             <Button type="primary">去签到</Button>
           </div>
         </Card>
-        <ListCard type="ARTICLE"></ListCard>
-        <ListCard type="USER"></ListCard>
-        <ListCard type="TOPIC"></ListCard>
+        <ListCard type="ARTICLE" data={getRankArticle()}></ListCard>
+        <ListCard type="USER" data={getRankUser()}></ListCard>
+        {/* <ListCard type="TOPIC"></ListCard> */}
       </Space>
     </div>
   );

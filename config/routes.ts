@@ -30,7 +30,7 @@
 //   },
 // ];
 
-import { SideBarList } from "../src/pages/community/constants/index";
+import { BarList } from "../src/pages/community/constants/index";
 
 export default [
   {
@@ -56,7 +56,7 @@ export default [
         name: "社区主页",
         path: "/community/main",
         component: "./community/pages/main",
-        routes: SideBarList.map((item) => ({
+        routes: BarList.map((item) => ({
           name: item.cname,
           path: `/community/main/${item.name}`,
           component: "./community/pages/main/MainBody",

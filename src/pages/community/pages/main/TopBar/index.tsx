@@ -1,12 +1,11 @@
 import * as icons from "@/assets/icons/index";
-import SIcon from "@/components/SIcon";
 import { BarList } from "@/pages/community/constants";
 import { useMemoizedFn } from "ahooks";
 import { useState } from "react";
 import { history } from "umi";
 import styles from "./index.less";
 
-const SideBar = () => {
+const TopBar = () => {
   const inactiveList = Object.values(icons.default.inactive);
   const activeList = Object.values(icons.default.active);
   const itemList = BarList.map((item, index) => {
@@ -29,41 +28,39 @@ const SideBar = () => {
   );
 
   return (
-    <div className={styles["side-bar"]}>
-      {itemList.map((item, index) => {
-        return (
-          <div
-            onMouseEnter={() => {
-              setHover(index);
-            }}
-            onMouseLeave={() => {
-              setHover(active);
-            }}
-            onClick={() => {
-              setActive(index);
-              onChange(item.name);
-            }}
-            key={index}
-            className={`${styles["side-bar-item"]} ${
-              active === index && styles["side-bar-item-active"]
-            }`}
-          >
-            <SIcon
+    <div className={styles["top-bar"]}>
+      <div className={styles["top-bar-content"]}>
+        {itemList.map((item, index) => {
+          return (
+            <div
+              onMouseEnter={() => {
+                setHover(index);
+              }}
+              onMouseLeave={() => {
+                setHover(active);
+              }}
+              onClick={() => {
+                setActive(index);
+                onChange(item.name);
+              }}
               key={index}
-              size="tiny"
-              icon={activeStatus(index) ? item.icon.active : item.icon.inactive}
-            ></SIcon>
-            <span
-              style={{ padding: "0 0 0 20px", fontSize: "16px" }}
-              className={`${activeStatus(index) && styles["active"]}`}
+              className={`${styles["top-bar-item"]} ${
+                active === index && styles["top-bar-item-active"]
+              }`}
             >
-              {item.cname}
-            </span>
-          </div>
-        );
-      })}
+              <span
+                className={`${styles["top-bar-text"]} ${
+                  activeStatus(index) && styles["active"]
+                }`}
+              >
+                {item.cname}
+              </span>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
 
-export default SideBar;
+export default TopBar;

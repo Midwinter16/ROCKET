@@ -5,8 +5,33 @@
   padding: 0;
 
   .body-main {
-    padding: 10px 10rem;
+    padding: 10px 0;
+    margin: 0 auto;
+    max-width: 1400px;
+    user-select: none;
 
+    .label-select {
+      padding-bottom: 10px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
 
+      .label-select-item {
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 50px;
+        font-size: 16px;
+        color: #666;
+
+        &:hover {
+          color: @app-blue-5;
+        }
+      }
+
+      .active {
+        color: #fff !important;
+        background-color: @app-blue-5;
+      }
+    }
   }
 }
