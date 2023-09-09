@@ -24,16 +24,12 @@ const MainBody = () => {
     {
       key: "1",
       label: "推荐",
-      children: loading ? <Skeleton active /> : <ArticleCardList data={data} />,
+      children: <ArticleCardList data={data} />
     },
     {
       key: "2",
       label: "最新",
-      children: loading ? (
-        <Skeleton active />
-      ) : (
-        <ArticleCardList data={getNewArticles()} />
-      ),
+      children: <ArticleCardList data={getNewArticles()} />
     },
   ];
 

@@ -9,13 +9,12 @@ export default () => {
   const [labels, setLabels] = useState<Label[]>();
   const [active, setActive] = useState<Label["value"]>("all");
 
-  const { run } = useRequest(queryCatelogs, {
+  useRequest(queryCatelogs, {
     onSuccess(res) {
       if (!res) return;
-      const data = res.data;
-      setData(data);
+      setData(res);
       setLabels(
-        [...data].filter(
+        [...res].filter(
           (item) => item.name === location.pathname.split("/")[3],
         )[0].labels,
       );
@@ -25,7 +24,9 @@ export default () => {
   useEffect(() => {
     return history.listen(() => {
       const catelog = location.pathname.split("/")[3];
-      setLabels([...data].filter((item) => item.name === catelog)[0].labels);
+      if (!catelog) return;
+      data &&
+        setLabels([...data].filter((item) => item.name === catelog)[0].labels);
       setActive("all");
     });
   }, [data]);
