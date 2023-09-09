@@ -6,25 +6,18 @@ import { queryArticle } from "../services";
 
 export default () => {
   const [data, setData] = useState<Article[]>();
-  const [loading, setLoading] = useState<boolean>(false);
 
   const { runAsync: getAllArticle } = useRequest(queryArticle, {
     onSuccess(res) {
       if (!res) return;
-      setData(res.data);
+      setData(res);
     },
   });
 
   const getCatelog = async (catelog: string) => {
-    setLoading(true);
-    await getAllArticle().finally(() => {
-      setLoading(false);
-    });
+    await getAllArticle();
     // 综合，关注，排行榜的逻辑不一致，综合展示全部数据，关注展示用户关注的标签，排行榜是一个新的页面
-    if (["composite", "focus", "rank"].includes(catelog)) {
-      setLoading(false);
-      return;
-    }
+    if (["composite", "focus", "rank"].includes(catelog)) return;
     await setData((prev) =>
       prev?.filter((item) =>
         item.labels.some((label) => label.value === catelog),
@@ -59,7 +52,6 @@ export default () => {
   }, []);
 
   return {
-    loading,
     data,
     setData,
     getCatelog,
