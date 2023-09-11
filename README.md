@@ -177,6 +177,13 @@
 ### dev
 - community
   - 基本完善主页面所有数据流，包括文章，作者信息，最大限度简化 model 逻辑，更新了 services 接口获取数据进行筛选，从 model 中解耦
+
+## 1.5.2
+### dev
+- community
+  - 主界面：完善文章用户信息和标签信息
+  - 将顶部 TopBar 集成为组件 STopBar
+  - 编辑界面初始化
   
 
 ## todo 
@@ -208,6 +215,8 @@
       - [x] 额外信息 - other_info - OtherInfo
       - [ ] 用户行为追踪 - track - Track
       - 头衔 - titles - string[]
+      - 提醒消息 - messages - Message[]
+      - 签到状态 -  - boolean
       - 关注的标签 - follow_labels - Label[]
       - 关注的用户 - follow_users - User.id[]
       - 发表的文章 - articles - Comment.id[]
@@ -252,6 +261,16 @@
       - 类目名 - label - string
       - 类目值 - value - string
       - 标签组 - labels - Label[]
+    - [x] 消息提示 Message
+      - id - id - number
+      - 标题 - title - string
+      - 内容 - content - string
+      - 类型（通知，提醒，评论等）- type - 'notification' ｜ 'reminder' | 'comment'
+      - 是否已读 - is_read - boolean
+      - 创建时间 - create_at - new Date
+      - 来源 - from - string
+      - 接受者 - to - User.id
+      - 扩展内容 - extra - unk
   - [ ] 用户埋点
     - 收集用户点击信息，可以后续放在后台管理数据页面中进行展示
   - [ ] 后台管理数据页面
@@ -265,8 +284,8 @@
     - [ ] 主体内容展示文章项，文章项内容包括标题，标题符号🔥，图片，摘要文字，作者，阅读数，点赞
     - [ ] 隔 10 个文章显示基于阅读偏好推荐作者列表，建议用 swiper freedom 的形式展示
     - [x] 主页面文章宽度监控，以改变 ellipsis 的字数
-    - [ ] 工具栏（左侧）：基本完善，差滑动跟随（fixed）
-    - [ ] 信息栏（右侧）：基本完善，差滑动跟随（fixed）
+    - [x] 工具栏（左侧）：基本完善，差滑动跟随（fixed）
+    - [x] 信息栏（右侧）：基本完善，差滑动跟随（fixed）
       - [ ] ListItem 组件缺少换一换，查看更多
 - 设置
   - [ ] 主体颜色切换

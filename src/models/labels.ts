@@ -24,6 +24,7 @@ export default () => {
       },
     ]);
   };
+  
   // 标签编辑
   const changeLabel = (newLabel: TYPE.Label, id: number) => {
     setLabels((prevData) =>

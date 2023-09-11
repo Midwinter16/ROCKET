@@ -59,3 +59,26 @@ export const BarList = [
     cname: "排行榜",
   },
 ];
+
+export const NotificationList = [
+  {
+    cname: "评论",
+    name: "comment",
+  },
+  {
+    cname: "赞和收藏",
+    name: "like",
+  },
+  {
+    cname: "新增粉丝",
+    name: "fans",
+  },
+  {
+    cname: "私信",
+    name: "chat",
+  },
+  {
+    cname: "系统通知",
+    name: "system",
+  },
+];

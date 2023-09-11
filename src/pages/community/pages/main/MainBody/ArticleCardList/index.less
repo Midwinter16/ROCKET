@@ -27,7 +27,44 @@
         text-overflow: ellipsis;
       }
 
-      .card-info {}
+      .card-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 5px;
+
+        .text-info {
+          display: flex;
+          justify-content: flex-start;
+          color: #666;
+          align-items: center;
+
+          &>* {
+            margin-right: 10px;
+          }
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+
+        .label-info {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+
+          .label-item {
+            padding: 3px;
+            background-color: #eee;
+            color: #aaa;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 12px;
+            margin-right: 7px;
+          }
+        }
+      }
+
     }
 
     .card-img {

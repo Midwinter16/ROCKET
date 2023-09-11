@@ -2,13 +2,16 @@ import SIcon from "@/components/SIcon";
 import { HeaderBannerList } from "@/pages/community/constants";
 import rocketIcon from "@icons/rocket.svg";
 import vipIcon from "@icons/vip.svg";
+import { useModel } from "@umijs/max";
 import { Button, Col, Input, Row, Space } from "antd";
 import { useState } from "react";
-import { history } from "umi";
+import Alarm from "./Alarm";
+import Self from "./Self";
 import styles from "./index.less";
 
 const Header = () => {
-  const [activeBanner, setActiveBanner] = useState<string>("main");
+  const [activeBanner, setActiveBanner] = useState<string>("home");
+  const { data, isLogin, setIsLogin } = useModel("community.user");
   return (
     <div className={styles["header-container"]}>
       <Row gutter={20}>
@@ -45,13 +48,21 @@ const Header = () => {
           <div className={styles["header-user"]}>
             <Space size={"large"}>
               <SIcon icon={vipIcon} size="small" title="会员"></SIcon>
-              <Button
-                onClick={() => {
-                  history.push("/community/login");
-                }}
-              >
-                注册 ｜ 登录
-              </Button>
+              {isLogin ? (
+                <Space size={"large"}>
+                  <Alarm />
+                  <Self />
+                </Space>
+              ) : (
+                <Button
+                  onClick={() => {
+                    // history.push("/community/login");
+                    setIsLogin(true);
+                  }}
+                >
+                  注册 ｜ 登录
+                </Button>
+              )}
             </Space>
           </div>
         </Col>

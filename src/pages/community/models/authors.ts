@@ -1,3 +1,4 @@
+import { getRoute } from "@/utils/utils";
 import { history } from "@umijs/max";
 import { useRequest } from "ahooks";
 import { useEffect, useState } from "react";
@@ -27,15 +28,17 @@ export default () => {
   const { runAsync: getUsers } = useRequest((catelog) => queryUsers(catelog), {
     onSuccess(res) {
       if (!res) return;
+      if (getRoute(2) !== "main") return; // fix
       updateData(res);
     },
-    defaultParams: [history.location.pathname.split("/")[3]],
+    defaultParams: [getRoute(3)],
   });
 
   useEffect(() => {
     // 获取不同类目下的作者
-    history.listen(async ({ location }) => {
-      const catelog = location.pathname.split("/")[3];
+    history.listen(async () => {
+      if (getRoute(2) !== "main") return; // fix
+      const catelog = getRoute(3);
       await getUsers(catelog).then((res) => updateData(res));
     });
   });

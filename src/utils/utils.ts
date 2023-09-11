@@ -95,3 +95,9 @@ export const greetings = () => {
     ? "下午好"
     : "晚上好";
 };
+
+// 获取路由路径
+export const getRoute = (level: number) => {
+  // level :1 :2 :3
+  return window.location.pathname.split("/")[level];
+};
