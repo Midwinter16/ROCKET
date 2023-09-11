@@ -52,6 +52,9 @@ export const layout = () => {
       return (
         <ConfigProvider
           theme={{
+            token: {
+              sizePopupArrow: 16,
+            },
             components: {
               Tabs: {
                 titleFontSize: 18,

@@ -1,3 +1,4 @@
+import { getRoute } from "@/utils/utils";
 import { history } from "@umijs/max";
 import { useRequest } from "ahooks";
 import { useEffect, useState } from "react";
@@ -12,21 +13,18 @@ export default () => {
   useRequest(queryCatelogs, {
     onSuccess(res) {
       if (!res) return;
+      if (getRoute(2) !== "main") return; // fix
       setData(res);
-      setLabels(
-        [...res].filter(
-          (item) => item.name === location.pathname.split("/")[3],
-        )[0].labels,
-      );
+      setLabels([...res].filter((item) => item.name === getRoute(3))[0].labels);
     },
   });
 
   useEffect(() => {
     return history.listen(() => {
-      const catelog = location.pathname.split("/")[3];
+      if (getRoute(2) !== "main") return; // fix
+      const catelog = getRoute(3);
       if (!catelog) return;
-      data &&
-        setLabels([...data].filter((item) => item.name === catelog)[0].labels);
+      setLabels([...data].filter((item) => item.name === catelog)[0].labels);
       setActive("all");
     });
   }, [data]);

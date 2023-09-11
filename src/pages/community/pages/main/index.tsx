@@ -4,7 +4,6 @@ import { Col, Row } from "antd";
 import { useModel } from "@umijs/max";
 import { Space } from "antd";
 import { useEffect, useState } from "react";
-import Header from "./Header";
 import Rank from "./Info";
 import SideBar from "./SideBar";
 import TopBar from "./TopBar";
@@ -16,7 +15,7 @@ const Main = () => {
 
   const initType = () => {
     const clientWidth = window.innerWidth;
-    if (clientWidth <= 1400) {
+    if (clientWidth <= 1500) {
       setType("horizontal");
     } else {
       setType("vertical");
@@ -30,7 +29,6 @@ const Main = () => {
 
   return (
     <div className={styles["body-container"]}>
-      <Header></Header>
       {type === "horizontal" && <TopBar></TopBar>}
       <div className={styles["body-main"]}>
         {type === "horizontal" && (

@@ -1,3 +1,4 @@
+@tiny: 16px;
 @tiny: 24px;
 @small: 30px;
 @middle: 36px;
@@ -16,11 +17,12 @@
   }
 }
 
-@nameList: tiny, small, middle, large;
-@sizeList: 24px, 30px, 36px, 42px;
+@nameList: mini, tiny, small, middle, large;
+@sizeList: 16px, 24px, 30px, 36px, 42px;
 
 
-.loop(@i) when (@i<length(@sizeList)+1) { // less 的循环体是 loop 中，可以随意写多个 loop 函数
+.loop(@i) when (@i<length(@sizeList)+1) {
+  // less 的循环体是 loop 中，可以随意写多个 loop 函数
   .sizeloop(extract(@nameList, @i), extract(@sizeList, @i));
   .spanloop(extract(@nameList, @i), extract(@sizeList, @i));
   .loop(@i+1)

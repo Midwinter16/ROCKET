@@ -1,3 +1,4 @@
+import { getRoute } from "@/utils/utils";
 import { useRequest } from "ahooks";
 import { useEffect, useState } from "react";
 import { history } from "umi";
@@ -37,18 +38,20 @@ export default () => {
   const { runAsync: getArticle } = useRequest(
     (catelog) => queryArticle(catelog),
     {
-      onSuccess(res) {
+      onSuccess(res: Article[]) {
         if (!res) return;
+        if (getRoute(2) !== "main") return; // fix
         updateData(res);
       },
-      defaultParams: [history.location.pathname.split("/")[3]],
+      defaultParams: [getRoute(3)],
     },
   );
 
   useEffect(() => {
     // 获取不同类目下的文章
-    history.listen(async ({ location }) => {
-      const catelog = location.pathname.split("/")[3];
+    history.listen(async () => {
+      if (getRoute(2) !== "main") return; // fix
+      const catelog = getRoute(3);
       await getArticle(catelog).then((res) => updateData(res));
     });
   });

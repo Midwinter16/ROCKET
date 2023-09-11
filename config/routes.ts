@@ -30,7 +30,10 @@
 //   },
 // ];
 
-import { BarList } from "../src/pages/community/constants/index";
+import {
+  BarList,
+  NotificationList,
+} from "../src/pages/community/constants/index";
 
 export default [
   {
@@ -71,6 +74,16 @@ export default [
         name: "登录页",
         path: "/community/login",
         component: "./community/pages/login",
+      },
+      {
+        name: "通知",
+        path: "/community/notification",
+        component: "./community/pages/notification",
+        routes: NotificationList.map((item) => ({
+          name: item.cname,
+          path: `/community/notification/${item.name}`,
+          component: `./community/pages/notification/${item.name}`,
+        })),
       },
     ],
   },

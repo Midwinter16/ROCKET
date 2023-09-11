@@ -56,4 +56,4 @@ export enum DrawerMode {
   EDIT,
   VIEW,
 }
-export type IconSize = "tiny" | "small" | "middle" | "large";
+export type IconSize = "mini" | "tiny" | "small" | "middle" | "large";

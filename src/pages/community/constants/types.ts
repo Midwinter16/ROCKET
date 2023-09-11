@@ -21,6 +21,7 @@ export interface User {
   follow_users: number[];
   articles: number[];
   catelogs: string[];
+  messages: Message[];
   like_articles: number[];
   favorite_articles: number[];
   comment_articles: number[];
@@ -70,4 +71,15 @@ export interface Catelog {
   name: string;
   cname: string;
   labels: Label[];
+}
+
+export interface Message {
+  id: number;
+  title: string;
+  content: string;
+  type: "notification" | "reminder" | "comment";
+  is_read: boolean;
+  create_at: number;
+  from: string;
+  to: number;
 }

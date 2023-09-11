@@ -1,5 +1,5 @@
 import { IconSize } from "@/constants";
-import { Badge, Space } from "antd";
+import { Badge } from "antd";
 import styles from "./index.less";
 
 /**
@@ -11,9 +11,10 @@ export interface SIconProps {
   size: IconSize;
   icon: string;
   count?: number;
-  title?: string;
+  title?: string | number;
   fontsize?: number;
   direction?: "vertical" | "horizontal";
+  onClick?: () => void;
 }
 
 const SIcon: React.FC<SIconProps> = (props) => {
@@ -24,23 +25,27 @@ const SIcon: React.FC<SIconProps> = (props) => {
     title,
     fontsize = 14,
     direction = "horizontal",
+    onClick,
+    ...other
   } = props;
 
   return (
-    <div className={styles.sicon}>
-      <Space direction={direction}>
-        <Badge size="small" count={count !== 0 && count} dot={count === 0}>
-          <img className={styles[size]} src={icon}></img>
-        </Badge>
-        {title && (
-          <span
-            className={styles[`span-${size}`]}
-            style={{ fontSize: `${fontsize}px` }}
-          >
-            {title}
-          </span>
-        )}
-      </Space>
+    <div
+      onClick={onClick}
+      className="flex justify-center align-center"
+      {...other}
+    >
+      <Badge size="small" count={count !== 0 && count} dot={count === 0}>
+        <img className={styles[size]} src={icon}></img>
+      </Badge>
+      {title && (
+        <span
+          className={styles[`span-${size}`]}
+          style={{ fontSize: `${fontsize}px`, marginLeft: "7px" }}
+        >
+          {title}
+        </span>
+      )}
     </div>
   );
 };
