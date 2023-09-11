@@ -5,7 +5,6 @@ import articleIcon from "@icons/article.svg";
 import { Card } from "antd";
 import styles from "./index.less";
 
-
 /**
  * data：传递进来的数据
  * count：最大展示数据数，默认为 5
@@ -98,7 +97,7 @@ const ListCard: React.FC<ListCardProps> = (props) => {
         )}
       </div>
       <div className={styles["body-main"]}>
-        <Component data={data.slice(0, count)}></Component>
+        {data && <Component data={data.slice(0, count)}></Component>}
       </div>
       <div className={styles["body-footer"]}>查看更多</div>
     </Card>

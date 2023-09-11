@@ -166,16 +166,18 @@
   - 主页面文章视图栏
     - 导入 mock 数据
     - 设置其随着宽度变化变化文字缩略
-      - 这里思路卡住了，暂时不清楚怎么解决自适应变化宽度，可能可以直接设置 col 的宽度为变换的宽度
-      - 已解决，将 row 设置为不允许自动换行，并且将设置宽度的方法,delay200，等待 dom 完全加载完成后再设置宽度。
-      - 还是有问题，如何处理 width 在 dom 加载完成后再赋值
-      - 最终通过在 model 中添加 loading 解决
     - 添加随路由变化获取不同文章
     - 设置侧边栏文章榜数据
     - tabs select 接上数据
     - 主页面宽度变化展示 sidebar 或 topbar
     - 完善子选项
   - 潜在问题：大部分的样式变化都是通过 js 来判断改变的，消耗问题要考虑一下，有没有什么合适的 css 方法来优化该段代码
+
+## 1.5.1
+### dev
+- community
+  - 基本完善主页面所有数据流，包括文章，作者信息，最大限度简化 model 逻辑，更新了 services 接口获取数据进行筛选，从 model 中解耦
+  
 
 ## todo 
 
@@ -209,6 +211,7 @@
       - 关注的标签 - follow_labels - Label[]
       - 关注的用户 - follow_users - User.id[]
       - 发表的文章 - articles - Comment.id[]
+      - 发表文章类目 - catelogs - Catelog[]
       - 点赞的文章 - like_articles - Comment.id[]
       - 收藏的文章 - favorite_articles - Comment.id[]
       - 评论的文章 - comment_articles - Comment.id[]

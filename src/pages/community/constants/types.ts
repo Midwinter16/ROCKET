@@ -20,6 +20,7 @@ export interface User {
   follow_labels: Label[];
   follow_users: number[];
   articles: number[];
+  catelogs: string[];
   like_articles: number[];
   favorite_articles: number[];
   comment_articles: number[];
@@ -65,6 +66,7 @@ export interface Label {
 }
 
 export interface Catelog {
+  id: number;
   name: string;
   cname: string;
   labels: Label[];

@@ -1,4 +1,17 @@
-export const HeaderBannerList = ["首页", "直播", "活动"];
+export const HeaderBannerList = [
+  {
+    name: "首页",
+    value: "home",
+  },
+  {
+    name: "直播",
+    value: "live",
+  },
+  {
+    name: "活动",
+    value: "active",
+  },
+];
 
 export const BarList = [
   {

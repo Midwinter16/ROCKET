@@ -1,38 +1,19 @@
 import { request } from "@umijs/max";
+import { Label } from "../constants/types";
 
-export const queryArticle = async () => {
-  const { data } = await request<TYPE.Label>(`/api/articles`, {
-    method: "GET",
-  });
-  return data;
-};
-
-export const queryRankArticle = async () => {
-  // return request<TYPE.Label>(`/api/articles/rank`, {
-  //   method: "GET",
-  // });
+// 文章，
+export const queryArticle = async (catelog: string) => {
   const { data } = await request(`/api/articles`, {
     method: "GET",
   });
-  let rank = 0;
-  return [...data]
-    .sort((a, b) => b.read - a.read)
-    .map((item) => ({
-      ...item,
-      rank: (rank += 1),
-    }));
+  // 排除特殊路由
+  if (["composite", "focus", "rank"].includes(catelog) || !catelog) return data;
+  return [...data].filter((item) =>
+    item.labels.some((label: Label) => label.value === catelog),
+  );
 };
 
-export const queryNewArticle = async () => {
-  // return request<TYPE.Label>(`/api/articles/new`, {
-  //   method: "GET",
-  // });
-  const { data } = await request(`/api/articles`, {
-    method: "GET",
-  });
-  return [...data].sort((a, b) => b.create_at - a.create_at);
-};
-
+// 所有类目
 export const queryCatelogs = async () => {
   const { data } = await request(`/api/catelogs`, {
     method: "GET",
@@ -40,8 +21,12 @@ export const queryCatelogs = async () => {
   return data;
 };
 
-export const queryUsers = async () => {
-  return request(`/api/users`, {
+// 按照 catelogs 筛选用户
+export const queryUsers = async (catelog: string) => {
+  const { data } = await request(`/api/users`, {
     method: "GET",
   });
+  // 排除特殊路由
+  if (["composite", "focus", "rank"].includes(catelog) || !catelog) return data;
+  return [...data].filter((item) => item.catelogs.includes(catelog));
 };
