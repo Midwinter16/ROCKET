@@ -8,6 +8,7 @@
       "cname": "admin",
       "follow_users": null,
       "articles": null,
+      "catelogs": [],
       "fans": 1290213,
       "like_articles": [
         95986231
@@ -52,6 +53,7 @@
         14140859,
         86598165
       ],
+      "catelogs": [],
       "like_articles": null,
       "favorite_articles": null,
       "comment_articles": null,
@@ -91,6 +93,7 @@
         44059271,
         84154522
       ],
+      "catelogs": [],
       "like_articles": [
         47414517,
         97201021,
@@ -134,6 +137,7 @@
         3365141
       ],
       "articles": null,
+      "catelogs": [],
       "like_articles": [
         11032477,
         15920016
@@ -170,6 +174,7 @@
       "cname": "林霞",
       "follow_users": null,
       "articles": null,
+      "catelogs": [],
       "like_articles": null,
       "favorite_articles": [
         34241064,
@@ -210,6 +215,7 @@
       "articles": [
         25404205
       ],
+      "catelogs": [],
       "like_articles": [
         27272567,
         16764565,
@@ -249,6 +255,7 @@
         26455653,
         27503820
       ],
+      "catelogs": [],
       "like_articles": [
         15866367,
         93745765,
@@ -273,6 +280,7 @@
       "cname": "乔静",
       "follow_users": null,
       "articles": null,
+      "catelogs": [],
       "like_articles": null,
       "favorite_articles": [
         98060800,
@@ -315,10 +323,12 @@
         24018535
       ],
       "articles": [
-        54934272,
-        83716544,
-        73281572,
-        4912849
+        68646585,
+        51225282
+      ],
+      "catelogs": [
+        "back_end",
+        "front_end"
       ],
       "like_articles": null,
       "favorite_articles": [
@@ -353,6 +363,7 @@
         19351097
       ],
       "articles": null,
+      "catelogs": [],
       "like_articles": null,
       "favorite_articles": null,
       "comment_articles": [

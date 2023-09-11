@@ -1,6 +1,7 @@
 {
   "data": [
     {
+      "id": 1,
       "name": "focus",
       "cname": "关注",
       "labels": [
@@ -11,6 +12,7 @@
       ]
     },
     {
+      "id": 2,
       "name": "composite",
       "cname": "综合",
       "labels": [
@@ -21,6 +23,7 @@
       ]
     },
     {
+      "id": 3,
       "name": "front_end",
       "cname": "前端",
       "labels": [
@@ -39,6 +42,7 @@
       ]
     },
     {
+      "id": 4,
       "name": "back_end",
       "cname": "后端",
       "labels": [
@@ -57,6 +61,7 @@
       ]
     },
     {
+      "id": 5,
       "name": "android",
       "cname": "Android",
       "labels": [
@@ -67,6 +72,7 @@
       ]
     },
     {
+      "id": 6,
       "name": "ios",
       "cname": "IOS",
       "labels": [
@@ -77,6 +83,7 @@
       ]
     },
     {
+      "id": 7,
       "name": "ai",
       "cname": "人工智能",
       "labels": [
@@ -87,6 +94,7 @@
       ]
     },
     {
+      "id": 8,
       "name": "tool",
       "cname": "开发工具",
       "labels": [
@@ -97,6 +105,7 @@
       ]
     },
     {
+      "id": 9,
       "name": "story",
       "cname": "代码人生",
       "labels": [
@@ -107,6 +116,7 @@
       ]
     },
     {
+      "id": 10,
       "name": "read",
       "cname": "阅读",
       "labels": [
@@ -117,6 +127,7 @@
       ]
     },
     {
+      "id": 11,
       "name": "rank",
       "cname": "排行榜",
       "labels": [

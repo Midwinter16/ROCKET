@@ -6,27 +6,11 @@ import { queryArticle } from "../services";
 
 export default () => {
   const [data, setData] = useState<Article[]>();
-
-  const { runAsync: getAllArticle } = useRequest(queryArticle, {
-    onSuccess(res) {
-      if (!res) return;
-      setData(res);
-    },
-  });
-
-  const getCatelog = async (catelog: string) => {
-    await getAllArticle();
-    // 综合，关注，排行榜的逻辑不一致，综合展示全部数据，关注展示用户关注的标签，排行榜是一个新的页面
-    if (["composite", "focus", "rank"].includes(catelog)) return;
-    await setData((prev) =>
-      prev?.filter((item) =>
-        item.labels.some((label) => label.value === catelog),
-      ),
-    );
-  };
+  const [rankArticles, setRankArticles] = useState<Article[]>();
+  const [newArticles, setNewArticles] = useState<Article[]>();
 
   // 按照阅读量排行
-  const getRankArticle = () => {
+  const getRankArticle = (data) => {
     let rank = 0;
     return [...data]
       ?.sort((a, b) => b.read - a.read)
@@ -37,25 +21,43 @@ export default () => {
   };
 
   // 按照发布时间排行
-  const getNewArticles = () => {
+  const getNewArticles = (data) => {
     return [...data].sort((a, b) => {
       return b.create_at - a.create_at;
     });
   };
 
+  // 更新所有数据
+  const updateData = (res) => {
+    setData(res);
+    setNewArticles(getNewArticles(res));
+    setRankArticles(getRankArticle(res));
+  };
+
+  const { runAsync: getArticle } = useRequest(
+    (catelog) => queryArticle(catelog),
+    {
+      onSuccess(res) {
+        if (!res) return;
+        updateData(res);
+      },
+      defaultParams: [history.location.pathname.split("/")[3]],
+    },
+  );
+
   useEffect(() => {
-    getCatelog(history.location.pathname.split("/")[3]);
-    return history.listen(({ location }) => {
+    // 获取不同类目下的文章
+    history.listen(async ({ location }) => {
       const catelog = location.pathname.split("/")[3];
-      getCatelog(catelog);
+      await getArticle(catelog).then((res) => updateData(res));
     });
-  }, []);
+  });
 
   return {
     data,
     setData,
-    getCatelog,
-    getRankArticle,
     getNewArticles,
+    newArticles,
+    rankArticles,
   };
 };

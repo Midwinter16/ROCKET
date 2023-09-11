@@ -1,14 +1,14 @@
-import rocketIcon from "@icons/rocket.svg";
 import SIcon from "@/components/SIcon";
 import { HeaderBannerList } from "@/pages/community/constants";
+import rocketIcon from "@icons/rocket.svg";
+import vipIcon from "@icons/vip.svg";
 import { Button, Col, Input, Row, Space } from "antd";
 import { useState } from "react";
 import { history } from "umi";
-import vipIcon from "@icons/vip.svg";
 import styles from "./index.less";
 
 const Header = () => {
-  const [activeBanner, setActiveBanner] = useState<number>(0);
+  const [activeBanner, setActiveBanner] = useState<string>("main");
   return (
     <div className={styles["header-container"]}>
       <Row gutter={20}>
@@ -17,19 +17,19 @@ const Header = () => {
         </Col>
         <Col flex={1} className="header-banner">
           <Space size={"large"}>
-            {HeaderBannerList.map((item, index) => {
+            {HeaderBannerList.map((item) => {
               return (
                 <div
                   className={`${styles["header-banner-item"]} ${
-                    activeBanner === index &&
+                    activeBanner === item.value &&
                     styles["header-banner-item-active"]
                   }`}
-                  key={index}
+                  key={item.value}
                   onClick={() => {
-                    setActiveBanner(index);
+                    setActiveBanner(item.value);
                   }}
                 >
-                  {item}
+                  {item.name}
                 </div>
               );
             })}

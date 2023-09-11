@@ -83,3 +83,15 @@ export const approximate = (number: number) => {
       return `${(number / 10000000).toFixed(1)}kw+`;
   }
 };
+
+// 招呼语
+export const greetings = () => {
+  const hour = moment().hours();
+  return hour >= 6 && hour < 12
+    ? "早上好"
+    : hour >= 12 && hour < 14
+    ? "中午好"
+    : hour >= 14 && hour < 18
+    ? "下午好"
+    : "晚上好";
+};
