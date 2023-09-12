@@ -3,7 +3,7 @@ import { BarList } from "@/pages/community/constants";
 import { history } from "@umijs/max";
 
 const TopBar = () => {
-  const onChange = (path: string) => history.push(`/community/main/${path}`);
+  const onChange = (path: string) => history.push(`/community/home/${path}`);
   return (
     <STopBar
       data={BarList}

@@ -1,5 +1,5 @@
 import { Outlet } from "@umijs/max";
-import Header from "./pages/main/Header";
+import Header from "./pages/home/Header";
 
 const Community = () => {
   return (

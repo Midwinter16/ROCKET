@@ -2,7 +2,7 @@ import SIcon from "@/components/SIcon";
 import { HeaderBannerList } from "@/pages/community/constants";
 import rocketIcon from "@icons/rocket.svg";
 import vipIcon from "@icons/vip.svg";
-import { useModel } from "@umijs/max";
+import { history, useModel } from "@umijs/max";
 import { Button, Col, Input, Row, Space } from "antd";
 import { useState } from "react";
 import Alarm from "./Alarm";
@@ -30,6 +30,7 @@ const Header = () => {
                   key={item.value}
                   onClick={() => {
                     setActiveBanner(item.value);
+                    history.push(`/community/${item.value}`);
                   }}
                 >
                   {item.name}

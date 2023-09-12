@@ -47,6 +47,7 @@ export interface Article {
   like: number;
   comments: number[];
   content: string;
+  status: "draft" | "pending" | "publish" | "reject" | "unpublish";
 }
 
 export interface Comment {
