@@ -23,7 +23,7 @@ const SideBar = () => {
   const defaultIndex = itemList.findIndex((item) => item.name === module);
   const [hover, setHover] = useState<number>(defaultIndex);
   const [active, setActive] = useState<number>(defaultIndex);
-  const onChange = (path: string) => history.push(`/community/main/${path}`);
+  const onChange = (path: string) => history.push(`/community/home/${path}`);
   const activeStatus = useMemoizedFn(
     (index: number) => hover === index || active === index,
   );

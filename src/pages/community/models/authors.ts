@@ -28,7 +28,7 @@ export default () => {
   const { runAsync: getUsers } = useRequest((catelog) => queryUsers(catelog), {
     onSuccess(res) {
       if (!res) return;
-      if (getRoute(2) !== "main") return; // fix
+      if (getRoute(2) !== "home") return; // fix
       updateData(res);
     },
     defaultParams: [getRoute(3)],
@@ -37,7 +37,7 @@ export default () => {
   useEffect(() => {
     // 获取不同类目下的作者
     history.listen(async () => {
-      if (getRoute(2) !== "main") return; // fix
+      if (getRoute(2) !== "home") return; // fix
       const catelog = getRoute(3);
       await getUsers(catelog).then((res) => updateData(res));
     });

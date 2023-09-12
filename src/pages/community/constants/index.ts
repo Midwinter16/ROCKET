@@ -4,12 +4,8 @@ export const HeaderBannerList = [
     value: "home",
   },
   {
-    name: "直播",
-    value: "live",
-  },
-  {
-    name: "活动",
-    value: "active",
+    name: "编辑",
+    value: "edit",
   },
 ];
 

@@ -38,7 +38,7 @@ import {
 export default [
   {
     path: "/",
-    redirect: "/todo",
+    redirect: "/community",
   },
   {
     name: "Todo",
@@ -52,17 +52,21 @@ export default [
     hideChildrenInMenu: true,
     routes: [
       {
-        path: "",
-        redirect: "/community/main/composite",
+        path: "/community/home",
+        redirect: "/community/home/composite",
+      },
+      {
+        path: "/community",
+        redirect: "/community/home",
       },
       {
         name: "社区主页",
-        path: "/community/main",
-        component: "./community/pages/main",
+        path: "/community/home",
+        component: "./community/pages/home",
         routes: BarList.map((item) => ({
           name: item.cname,
-          path: `/community/main/${item.name}`,
-          component: "./community/pages/main/MainBody",
+          path: `/community/home/${item.name}`,
+          component: "./community/pages/home/MainBody",
         })),
       },
       {

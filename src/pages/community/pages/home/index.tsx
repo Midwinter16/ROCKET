@@ -1,8 +1,5 @@
-import { Outlet } from "@umijs/max";
-import { Col, Row } from "antd";
-
-import { useModel } from "@umijs/max";
-import { Space } from "antd";
+import { Outlet, useModel } from "@umijs/max";
+import { Col, Row, Space } from "antd";
 import { useEffect, useState } from "react";
 import Rank from "./Info";
 import SideBar from "./SideBar";
