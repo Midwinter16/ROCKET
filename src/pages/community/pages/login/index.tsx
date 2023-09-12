@@ -1,46 +1,49 @@
-import { useState } from 'react';
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input, Card, Avatar, message } from "antd";
-import styles from "./index.less";
-import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 import rocket from "@icons/rocket.svg";
+import { Avatar, Button, Card, Checkbox, Form, Input, message } from "antd";
+import type { CheckboxChangeEvent } from "antd/es/checkbox";
+import { useState } from "react";
+import styles from "./index.less";
 
 const Login = () => {
-
-  const [remember, setRemember] = useState(false)
+  const [remember, setRemember] = useState(false);
 
   const rememberChange = (e: CheckboxChangeEvent) => {
     setRemember(e.target.checked);
-  }
+  };
 
   const login = () => {
-    console.log(remember)
-  }
+    console.log(remember);
+  };
 
   const [messageApi, contextHolder] = message.useMessage();
 
   const success = () => {
-    messageApi.loading({
-      content: '加载中',
-      duration: 1,
-      style: {
-        marginTop: '10vh',
-      },
-    }).then(() => messageApi.success({
-      content: '登录成功',
-      duration: 2,
-      style: {
-        marginTop: '10vh',
-      },
-    }));
+    messageApi
+      .loading({
+        content: "加载中",
+        duration: 1,
+        style: {
+          marginTop: "10vh",
+        },
+      })
+      .then(() =>
+        messageApi.success({
+          content: "登录成功",
+          duration: 2,
+          style: {
+            marginTop: "10vh",
+          },
+        }),
+      );
   };
 
   const error = () => {
     messageApi.error({
-      content: '登录失败，请检查账号或者密码是否正确',
+      content: "登录失败，请检查账号或者密码是否正确",
       duration: 2,
       style: {
-        marginTop: '10vh',
+        marginTop: "10vh",
       },
     });
   };
@@ -50,7 +53,11 @@ const Login = () => {
       {contextHolder}
       <Card className={styles["login-card"]}>
         <div className={styles["card-header"]}>
-          <Avatar shape="square" src={rocket} className={styles["logo"]}></Avatar>
+          <Avatar
+            shape="square"
+            src={rocket}
+            className={styles["logo"]}
+          ></Avatar>
           <div className={styles["title"]}>
             <h1>ROCKET FLY</h1>
           </div>
@@ -58,7 +65,7 @@ const Login = () => {
         <Form
           name="normal_login"
           className={styles["login-form"]}
-          initialValues={{remember}}
+          initialValues={{ remember }}
           onFinish={success}
           onFinishFailed={error}
         >
