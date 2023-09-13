@@ -63,3 +63,4 @@
 ### opt
 - community
   - 优化 model 中获取数据和更新数据的逻辑，将触发从路由改变变为点击标签
+  - 优化 model 中的排序，使用 loadsh 的 sortBy
