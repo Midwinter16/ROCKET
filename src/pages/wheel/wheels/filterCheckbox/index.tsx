@@ -5,6 +5,8 @@ const CheckboxGroup = Checkbox.Group;
 
 type dataListProps = string;
 
+// ahooks里有一个作用相同的钩子，useSelections
+
 const FilterCheckbox = () => {
   const [checkList, setCheckList] = useState<dataListProps[]>([
     "type-1",

@@ -47,45 +47,45 @@ export default [
   },
   {
     name: "社区",
-    path: "/community",
+    path: "community",
     component: "./community",
     hideChildrenInMenu: true,
     routes: [
-      {
-        path: "/community/home",
-        redirect: "/community/home/composite",
-      },
       {
         path: "/community",
         redirect: "/community/home",
       },
       {
-        name: "社区主页",
         path: "/community/home",
+        redirect: "/community/home/composite",
+      },
+      {
+        name: "社区主页",
+        path: "home",
         component: "./community/pages/home",
         routes: BarList.map((item) => ({
           name: item.cname,
-          path: `/community/home/${item.name}`,
+          path: `${item.name}`,
           component: "./community/pages/home/MainBody",
         })),
       },
       {
         name: "编辑页",
-        path: "/community/edit",
+        path: "edit",
         component: "./community/pages/edit",
       },
       {
         name: "登录页",
-        path: "/community/login",
+        path: "login",
         component: "./community/pages/login",
       },
       {
         name: "通知",
-        path: "/community/notification",
+        path: "notification",
         component: "./community/pages/notification",
         routes: NotificationList.map((item) => ({
           name: item.cname,
-          path: `/community/notification/${item.name}`,
+          path: `${item.name}`,
           component: `./community/pages/notification/${item.name}`,
         })),
       },
