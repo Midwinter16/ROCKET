@@ -53,4 +53,13 @@
   - 修复 catelogsModel 在非 community 路由的情况下初始化会失败，导致出错
   - 修复 pack-lock 版本为 V1，此前更新为了 V2
 ### Q
-- vscode 更新了一次依赖包后，代码提示没了，不知道为啥
+- vscode 更新了一次依赖包后，代码提示慢了，不知道为啥
+  - 删除 ts 文件名称大小写验证，tsconfig 中的compilerOptions配置 forceConsistentCasingInFileNames:false
+## 1.5.4
+### dev
+- community
+  - 完善编辑页面
+
+### opt
+- community
+  - 优化 model 中获取数据和更新数据的逻辑，将触发从路由改变变为点击标签

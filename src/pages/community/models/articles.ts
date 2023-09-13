@@ -1,7 +1,5 @@
-import { getRoute } from "@/utils/utils";
 import { useRequest } from "ahooks";
-import { useEffect, useState } from "react";
-import { history } from "umi";
+import { useState } from "react";
 import { Article } from "../constants/types";
 import { queryArticle } from "../services";
 
@@ -40,26 +38,16 @@ export default () => {
     {
       onSuccess(res: Article[]) {
         if (!res) return;
-        if (getRoute(2) !== "home") return; // fix
         updateData(res);
       },
-      defaultParams: [getRoute(3)],
     },
   );
-
-  useEffect(() => {
-    // 获取不同类目下的文章
-    history.listen(async () => {
-      if (getRoute(2) !== "home") return; // fix
-      const catelog = getRoute(3);
-      await getArticle(catelog).then((res) => updateData(res));
-    });
-  });
 
   return {
     data,
     setData,
     getNewArticles,
+    getArticle,
     newArticles,
     rankArticles,
   };

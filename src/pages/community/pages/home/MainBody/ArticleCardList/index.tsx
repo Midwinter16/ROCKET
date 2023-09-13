@@ -1,14 +1,11 @@
 import SIcon from "@/components/SIcon";
 import { Article } from "@/pages/community/constants/types";
-import { queryUser } from "@/pages/community/services";
 import { approximate } from "@/utils/utils";
 import dianzanIcon from "@icons/dianzan.svg";
 import liulanIcon from "@icons/liulan.svg";
-import { useRequest } from "ahooks";
-import { forwardRef } from "react";
 import styles from "./index.less";
 
-const ArticleCardList = forwardRef((props: any) => {
+const ArticleCardList = (props: any) => {
   const { data } = props;
 
   return (
@@ -56,6 +53,6 @@ const ArticleCardList = forwardRef((props: any) => {
         ))}
     </div>
   );
-});
+};
 
 export default ArticleCardList;

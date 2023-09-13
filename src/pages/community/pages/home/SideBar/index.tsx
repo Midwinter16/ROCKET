@@ -1,6 +1,7 @@
 import * as icons from "@/assets/icons/index";
 import SIcon from "@/components/SIcon";
 import { BarList } from "@/pages/community/constants";
+import { useModel } from "@umijs/max";
 import { useMemoizedFn } from "ahooks";
 import { useState } from "react";
 import { history } from "umi";
@@ -19,11 +20,21 @@ const SideBar = () => {
     };
   });
 
+  const { getArticle } = useModel("community.articles");
+  const { getUsers } = useModel("community.authors");
+  const { getCatelogs } = useModel("community.catelogs");
+
   const module = window.location.pathname.split("/")[3];
   const defaultIndex = itemList.findIndex((item) => item.name === module);
   const [hover, setHover] = useState<number>(defaultIndex);
   const [active, setActive] = useState<number>(defaultIndex);
-  const onChange = (path: string) => history.push(`/community/home/${path}`);
+  // const onChange = (path: string) => history.push(`/community/home/${path}`);
+  const onChange = (catelog: string) => {
+    getArticle(catelog);
+    getUsers(catelog);
+    getCatelogs();
+    history.push(`/community/home/${catelog}`);
+  };
   const activeStatus = useMemoizedFn(
     (index: number) => hover === index || active === index,
   );
