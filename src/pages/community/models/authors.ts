@@ -1,7 +1,6 @@
 import { getRoute } from "@/utils/utils";
-import { history } from "@umijs/max";
 import { useRequest } from "ahooks";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { User } from "../constants/types";
 import { queryUsers } from "../services";
 
@@ -26,26 +25,16 @@ export default () => {
   };
 
   const { runAsync: getUsers } = useRequest((catelog) => queryUsers(catelog), {
-    onSuccess(res) {
+    onSuccess(res: User[]) {
       if (!res) return;
-      if (getRoute(2) !== "home") return; // fix
       updateData(res);
     },
-    defaultParams: [getRoute(3)],
-  });
-
-  useEffect(() => {
-    // 获取不同类目下的作者
-    history.listen(async () => {
-      if (getRoute(2) !== "home") return; // fix
-      const catelog = getRoute(3);
-      await getUsers(catelog).then((res) => updateData(res));
-    });
   });
 
   return {
     data,
     setData,
+    getUsers,
     rankUsers,
   };
 };
