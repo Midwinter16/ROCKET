@@ -1,0 +1,135 @@
+.user-container {
+  width: 100%;
+  position: relative;
+  margin-top: 1.767rem;
+  margin-bottom: 6rem;
+  display: flex;
+}
+
+.major-area {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.user-info-block {
+  display: flex;
+  padding: 2.5rem;
+  background-color: #fff;
+
+  & .avatar {
+    flex: 0 0 auto;
+    margin-right: 2.4rem;
+    width: 7.5rem;
+    height: 7.5rem;
+    background-color: #f9f9f9;
+  }
+
+  & .info-box {
+    flex: 1 1 auto;
+  }
+}
+
+.info-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  & .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+
+    & .username {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: #000;
+    }
+  }
+}
+
+.introduction {
+  display: flex;
+  justify-content: space-between;
+
+  & .left {
+    & .position, & .intro{
+      // font-size: 1.25rem;
+      line-height: 1.5;
+      color: #72777b;
+      overflow: hidden;
+      & .content {
+        flex: 1 1 auto;
+        vertical-align: top;
+        // font-size: 1.17rem;
+      }
+    }
+
+    & .intro {
+      margin-top: 0.4rem;
+    }
+  }
+
+  & .right {
+    display: flex;
+    align-items: flex-end;
+
+    & .setting-btn {
+      color: #007fff;
+      padding: 0;
+      height: 2.334rem;
+      // font-size: 1.333rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+      line-height: 1.2;
+      border: 1px solid #007fff;
+      background-color: #fff;
+      border-radius: 4px;
+      width: 7.834rem;
+      outline: none;
+      transition: background-color .3s, color .3s;
+      cursor: pointer;
+    }
+  }
+}
+
+.minor-area {
+  flex: 0 0 auto;
+  margin-left: 1rem;
+  width: 20rem;
+  line-height: 1.2;
+
+  & .sticky {
+    position: fixed;
+    top: 9.223rem;
+    width: 20rem;
+    transition: all .2s;
+  }
+}
+
+@media (max-width: 960px) {
+  .minor-area {
+    display: none;
+  }
+}
+
+.achivement-card {
+  margin-bottom: 1rem;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
+
+  & .title {
+    padding: 1.1rem;
+    // font-size: 1.333rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #31445b;
+    border-bottom: 1px solid rgba(230, 230, 231, .5);
+  }
+}
