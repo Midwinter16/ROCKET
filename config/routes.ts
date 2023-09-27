@@ -89,6 +89,26 @@ export default [
           component: `./community/pages/notification/${item.name}`,
         })),
       },
+      {
+        name: "设置页",
+        path: "settings",
+        redirect: "/community/settings/profile",
+      },
+      {
+        name: "个人主页",
+        path: "user",
+        component: "./community/pages/user",
+      },
+      {
+        name: "个人资料页",
+        path: "settings/profile",
+        component: "./community/pages/settings/profile",
+      },
+      {
+        name: "账号设置页",
+        path: "settings/account",
+        component: "./community/pages/settings/account",
+      },
     ],
   },
   {
