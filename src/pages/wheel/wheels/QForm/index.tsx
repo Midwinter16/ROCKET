@@ -4,31 +4,8 @@ import { FormProps } from "@/components/QuickForm/type";
 import { Tabs } from "antd";
 import { useState } from "react";
 
-const formOptions: FormProps[] = [
-  {
-    key: "1",
-    itemProps: {
-      label: "用户名",
-      name: "username",
-    },
-    componentProps: {
-      type: "input",
-    },
-  },
-  {
-    key: "2",
-    itemProps: {
-      label: "密码",
-      name: "password",
-    },
-    componentProps: {
-      type: "password",
-    },
-  },
-];
-
 const QForm = () => {
-  const [formOptions, setFormOptions] = useState<FormProps[]>({});
+  const [formOptions, setFormOptions] = useState<FormProps[]>([]);
   const tabsItems = [
     {
       key: "1",
