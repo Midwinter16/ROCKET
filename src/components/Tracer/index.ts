@@ -22,7 +22,6 @@ const targetRules: targetRulesProps[] = [
   },
 ];
 
-
 // selector 判断器
 const selectorJudge = (el: HTMLElement, target: string): boolean => {
   return [...el.classList].indexOf(target) !== -1;
@@ -68,7 +67,7 @@ window.addEventListener("click", (e: MouseEvent) => {
         targetFuncObj[key](el, value),
       );
       if (judgeRules) {
-        console.log("hit");
+        // console.log("hit");
       }
     });
   }

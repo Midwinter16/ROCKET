@@ -163,6 +163,21 @@ export default [
         path: "copy",
         component: "./wheel/wheels/copy",
       },
+      {
+        name: "按钮组",
+        path: "buttongroup",
+        component: "./wheel/wheels/ButtonGroup",
+      },
+      {
+        name: "性能检测",
+        path: "performance",
+        component: "./wheel/wheels/Performance",
+      },
+      {
+        name: "QuickForm",
+        path: "quickform",
+        component: "./wheel/wheels/QForm",
+      },
     ],
   },
 ];
