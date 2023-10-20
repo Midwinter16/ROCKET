@@ -22,6 +22,7 @@
     "lodash": "^4.17.21",
     "mockjs": "^1.1.0",
     "moment": "^2.29.4",
+    "pinyin-pro": "^3.17.0",
     "react-countup": "^6.4.2",
     "slate": "^0.94.1",
     "slate-react": "^0.98.3",

@@ -1,6 +1,7 @@
 import { CloseOutlined, RedoOutlined } from "@ant-design/icons";
 import { Button, Cascader, Input, Space, message } from "antd";
 import { last } from "lodash";
+import { pinyin } from "pinyin-pro";
 import { useState } from "react";
 import { componentMapping } from "..";
 import { selectOptions } from "../constants";
@@ -75,7 +76,7 @@ const FormMaker: React.FC<FormMakerProps> = (props) => {
         key: item.key.toString(),
         itemProps: {
           label: item.name,
-          name: item.name, // 转为拼音或使用翻译转为英文
+          name: pinyin(item.name, { toneType: "none" }), // 转为拼音或使用翻译转为英文
         },
         componentProps: {
           type: item.selected as ComponentType,
@@ -91,6 +92,7 @@ const FormMaker: React.FC<FormMakerProps> = (props) => {
   const submit = () => {
     const data = options.filter((item) => item.selected);
     format(data);
+    setOptions([]);
     message.info("提交成功，可以到 QuickForm Tabs 中查看");
   };
 
@@ -129,15 +131,24 @@ const FormMaker: React.FC<FormMakerProps> = (props) => {
                 type: item.selected,
               })
             )}
-            <CloseOutlined
-              style={{ color: "red", cursor: "pointer" }}
+            <Button
+              icon={
+                <CloseOutlined style={{ color: "red", cursor: "pointer" }} />
+              }
               onClick={() => deleteOption(item.key)}
-            />
+              danger
+            >
+              删除
+            </Button>
             {item.selected && (
-              <RedoOutlined
-                style={{ color: "blue", cursor: "pointer" }}
+              <Button
+                icon={
+                  <RedoOutlined style={{ color: "blue", cursor: "pointer" }} />
+                }
                 onClick={() => selectedOption(item.key)}
-              />
+              >
+                重选
+              </Button>
             )}
           </Space>
         ))}
