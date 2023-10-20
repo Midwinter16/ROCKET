@@ -25,6 +25,8 @@ const Copy = () => {
     setSub(content);
   };
 
+  // .map(flow(resolveDeps, this.specifyDeps));
+
   return (
     <div className="body-container">
       <Space direction="vertical">
