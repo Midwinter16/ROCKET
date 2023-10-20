@@ -13,3 +13,10 @@
   - 添加表单提交/重置按钮
   - 添加 FormMaker，实现了基本的效果
   - 将 type 和 constant 独立为一个文件
+
+## 1.8.0
+### dev
+- wheel
+  - QuickForm 开发
+  - 现在可以通过 FormMaker 生成数据到 QuickForm 中查看
+  

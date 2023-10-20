@@ -24,8 +24,6 @@ import React, { useState } from "react";
 
 const { TextArea } = Input;
 
-
-
 /**
  * 组件函数
  * @param props
@@ -111,30 +109,32 @@ const QuickForm: React.FC<QuickFormProps> = (props) => {
     message.info("已重置表单");
   };
   return (
-    <Form labelCol={{ span: labelCol }} form={form}>
-      {formOptions.map((item) => {
-        const { key, itemProps, componentProps } = item;
-        return (
-          <Form.Item key={key} {...itemProps}>
-            {componentMapping(componentProps)}
-          </Form.Item>
-        );
-      })}
-      <Form.Item wrapperCol={{ offset: labelCol }}>
-        <Button type="primary" onClick={submit}>
-          提交
-        </Button>
-        <Popconfirm
-          title="重置表单"
-          description="确认要重置表单吗"
-          onConfirm={confirm}
-          okText="重置"
-          cancelText="取消"
-        >
-          <Button htmlType="button">重置</Button>
-        </Popconfirm>
-      </Form.Item>
-    </Form>
+    formOptions.length && (
+      <Form labelCol={{ span: labelCol }} form={form}>
+        {formOptions.map((item) => {
+          const { key, itemProps, componentProps } = item;
+          return (
+            <Form.Item key={key} {...itemProps}>
+              {componentMapping(componentProps)}
+            </Form.Item>
+          );
+        })}
+        <Form.Item wrapperCol={{ offset: labelCol }}>
+          <Button type="primary" onClick={submit}>
+            提交
+          </Button>
+          <Popconfirm
+            title="重置表单"
+            description="确认要重置表单吗"
+            onConfirm={confirm}
+            okText="重置"
+            cancelText="取消"
+          >
+            <Button htmlType="button">重置</Button>
+          </Popconfirm>
+        </Form.Item>
+      </Form>
+    )
   );
 };
 
