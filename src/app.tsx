@@ -59,6 +59,9 @@ export const layout = () => {
               Tabs: {
                 titleFontSize: 18,
               },
+              InputNumber: {
+                controlWidth: 150,
+              },
             },
           }}
           input={{ autoComplete: "off" }}

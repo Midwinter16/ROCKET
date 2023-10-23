@@ -19,4 +19,16 @@
 - wheel
   - QuickForm 开发
   - 现在可以通过 FormMaker 生成数据到 QuickForm 中查看
+
+## 1.9.0
+### dev
+- wheel
+  - QuickForm 开发
+  - 添加 pinyin-pro 来进行中文转英文
+  - 通过 OptionDrawer 详细配置各个表单项组件的额外属性
+    - 更新普通选择框配置，基本完成常用项配置的写法
+  - 后续
+    - 每一个表单项组件的详细配置之后通过 drawer 来配置
+    - 还缺一个生成随机 key 的库
+    - FormMaker 要支持配置项可拖拽
   
