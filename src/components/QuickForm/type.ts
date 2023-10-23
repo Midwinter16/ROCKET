@@ -53,3 +53,25 @@ export interface FormProps {
   itemProps: itemProps;
   componentProps: ComponentProps;
 }
+
+/**
+ * 配置表单类型
+ * key：唯一 key 值，后面弄一个自动生成
+ * name：对应Form.Item 的 name
+ * selected：表单项组件类型
+ */
+export interface OptionProps {
+  key: string;
+  name: string;
+  selected: undefined | ComponentType;
+}
+
+/**
+ * 抽屉配置类型
+ * key：唯一 key 值，后面弄一个自动生成
+ * type：表单项组件类型
+ */
+export interface drawerProps {
+  props: OptionProps;
+  type: ComponentType | undefined;
+}

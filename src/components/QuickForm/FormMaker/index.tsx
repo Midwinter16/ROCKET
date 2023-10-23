@@ -1,17 +1,13 @@
-import { CloseOutlined, RedoOutlined } from "@ant-design/icons";
+import { CloseOutlined, EditOutlined, RedoOutlined } from "@ant-design/icons";
 import { Button, Cascader, Input, Space, message } from "antd";
 import { last } from "lodash";
-import { pinyin } from "pinyin-pro";
+
 import { useState } from "react";
 import { componentMapping } from "..";
 import { selectOptions } from "../constants";
-import { ComponentType, FormProps } from "../type";
-
-interface OptionProps {
-  key: number;
-  name: string;
-  selected: undefined | ComponentType;
-}
+import { ComponentType, FormProps, OptionProps, drawerProps } from "../type";
+import OptionDrawer from "./OptionDrawer";
+import { py } from "./utils";
 
 interface FormMakerProps {
   setFormOptions: (option: FormProps[]) => void;
@@ -20,15 +16,24 @@ interface FormMakerProps {
 const FormMaker: React.FC<FormMakerProps> = (props) => {
   const { setFormOptions } = props;
   const [options, setOptions] = useState<OptionProps[]>([
-    { key: 1, selected: undefined, name: "" },
+    { key: "1", selected: "input", name: "用户名" },
   ]);
+  const [open, setOpen] = useState(false);
+  const [drawerOption, setDrawerOption] = useState<drawerProps>({
+    props: {
+      key: "1",
+      selected: "input",
+      name: "用户名",
+    },
+    type: "input",
+  });
 
   /**
    * 删除表单项
    * @param key
    * @returns
    */
-  const deleteOption = (key: number) =>
+  const deleteOption = (key: string) =>
     setOptions((prev) => prev.filter((item) => item.key !== key));
 
   /**
@@ -36,7 +41,7 @@ const FormMaker: React.FC<FormMakerProps> = (props) => {
    * @param key
    * @returns
    */
-  const selectedOption = (key: number, e?: ComponentType[]) =>
+  const selectedOption = (key: string, e?: ComponentType[]) =>
     setOptions((prev) =>
       prev.map((item) => {
         if (item.key === key) {
@@ -54,7 +59,7 @@ const FormMaker: React.FC<FormMakerProps> = (props) => {
    * @param key
    * @returns
    */
-  const changeOption = (key: number, e: string) =>
+  const changeOption = (key: string, e: string) =>
     setOptions((prev) =>
       prev.map((item) => {
         if (item.key === key) {
@@ -76,7 +81,7 @@ const FormMaker: React.FC<FormMakerProps> = (props) => {
         key: item.key.toString(),
         itemProps: {
           label: item.name,
-          name: pinyin(item.name, { toneType: "none" }), // 转为拼音或使用翻译转为英文
+          name: py(item.name), // 转为拼音或使用翻译转为英文
         },
         componentProps: {
           type: item.selected as ComponentType,
@@ -103,7 +108,7 @@ const FormMaker: React.FC<FormMakerProps> = (props) => {
         onClick={() =>
           setOptions((prev) => [
             ...prev,
-            { key: +new Date(), name: "", selected: undefined },
+            { key: (+new Date()).toString(), name: "", selected: undefined },
           ])
         }
       >
@@ -116,6 +121,7 @@ const FormMaker: React.FC<FormMakerProps> = (props) => {
         {options.map((item) => (
           <Space style={{ margin: "10px 0 0 0" }} key={item.key}>
             <Input
+              defaultValue={item.name}
               placeholder="标签名称"
               onChange={(e) => changeOption(item.key, e.target.value)}
             ></Input>
@@ -131,6 +137,40 @@ const FormMaker: React.FC<FormMakerProps> = (props) => {
                 type: item.selected,
               })
             )}
+            {item.selected && (
+              <>
+                <Button
+                  icon={
+                    <EditOutlined
+                      style={{ color: "blue", cursor: "pointer" }}
+                    />
+                  }
+                  onClick={() => {
+                    setDrawerOption({
+                      props: {
+                        key: (+new Date()).toString(),
+                        selected: item.selected,
+                        name: item.name,
+                      },
+                      type: item.selected,
+                    });
+                    setOpen(true);
+                  }}
+                >
+                  配置
+                </Button>
+                <Button
+                  icon={
+                    <RedoOutlined
+                      style={{ color: "blue", cursor: "pointer" }}
+                    />
+                  }
+                  onClick={() => selectedOption(item.key)}
+                >
+                  重选
+                </Button>
+              </>
+            )}
             <Button
               icon={
                 <CloseOutlined style={{ color: "red", cursor: "pointer" }} />
@@ -140,19 +180,14 @@ const FormMaker: React.FC<FormMakerProps> = (props) => {
             >
               删除
             </Button>
-            {item.selected && (
-              <Button
-                icon={
-                  <RedoOutlined style={{ color: "blue", cursor: "pointer" }} />
-                }
-                onClick={() => selectedOption(item.key)}
-              >
-                重选
-              </Button>
-            )}
           </Space>
         ))}
       </Space>
+      <OptionDrawer
+        drawerOption={drawerOption}
+        open={open}
+        setOpen={setOpen}
+      ></OptionDrawer>
     </>
   );
 };

@@ -109,3 +109,9 @@ export const selectOptions: selectOptionsProps[] = [
     label: "文本",
   },
 ];
+
+// 类型中英映射
+export const typeMapping = selectOptions.flatMap((item) => {
+  if (item.children) return item.children;
+  return { ...item };
+});
