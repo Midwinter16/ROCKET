@@ -6,8 +6,9 @@ import { useState } from "react";
 import { componentMapping } from "..";
 import { selectOptions } from "../constants";
 import { ComponentType, FormProps, OptionProps, drawerProps } from "../type";
-import OptionDrawer from "./OptionDrawer";
-import { py } from "./utils";
+import OptionDrawerFn from "./OptionDrawer";
+import { parseFn } from "./OptionDrawer/InputDrawer/utils";
+import { py, uuid } from "./utils";
 
 interface FormMakerProps {
   setFormOptions: (option: FormProps[]) => void;
@@ -18,7 +19,10 @@ const FormMaker: React.FC<FormMakerProps> = (props) => {
   const [options, setOptions] = useState<OptionProps[]>([
     { key: "1", selected: "input", name: "用户名" },
   ]);
+  const [transformData, setTransformData] = useState<FormProps>();
   const [open, setOpen] = useState(false);
+  // reloadDrawer 用于重新渲染 Drawer
+  const [reloadDrawer, setReloadDrawer] = useState(false);
   const [drawerOption, setDrawerOption] = useState<drawerProps>({
     props: {
       key: "1",
@@ -108,7 +112,7 @@ const FormMaker: React.FC<FormMakerProps> = (props) => {
         onClick={() =>
           setOptions((prev) => [
             ...prev,
-            { key: (+new Date()).toString(), name: "", selected: undefined },
+            { key: uuid(), name: "", selected: undefined },
           ])
         }
       >
@@ -132,11 +136,16 @@ const FormMaker: React.FC<FormMakerProps> = (props) => {
                 options={selectOptions}
                 onChange={(e) => selectedOption(item.key, e)}
               ></Cascader>
+            ) : transformData ? (
+              [parseFn(transformData)].map((item) =>
+                componentMapping(item.componentProps),
+              )
             ) : (
               componentMapping({
                 type: item.selected,
               })
             )}
+            {/* 操作栏 */}
             {item.selected && (
               <>
                 <Button
@@ -148,13 +157,14 @@ const FormMaker: React.FC<FormMakerProps> = (props) => {
                   onClick={() => {
                     setDrawerOption({
                       props: {
-                        key: (+new Date()).toString(),
+                        key: uuid(),
                         selected: item.selected,
                         name: item.name,
                       },
                       type: item.selected,
                     });
                     setOpen(true);
+                    setReloadDrawer(true);
                   }}
                 >
                   配置
@@ -183,11 +193,14 @@ const FormMaker: React.FC<FormMakerProps> = (props) => {
           </Space>
         ))}
       </Space>
-      <OptionDrawer
-        drawerOption={drawerOption}
-        open={open}
-        setOpen={setOpen}
-      ></OptionDrawer>
+      {reloadDrawer &&
+        OptionDrawerFn({
+          drawerOption,
+          open,
+          setOpen,
+          setOptions,
+          setReloadDrawer,
+        })["input"]}
     </>
   );
 };

@@ -2,10 +2,10 @@ import { Select } from "antd";
 import { useEffect, useState } from "react";
 
 interface SelectMoldProps {
-  value: [];
+  options: [];
 }
 
-const SelectMold: React.FC<SelectMoldProps> = ({ value: options }) => {
+const SelectMold: React.FC<SelectMoldProps> = ({ options }) => {
   const [value, setValue] = useState(options?.[0]);
 
   useEffect(() => {

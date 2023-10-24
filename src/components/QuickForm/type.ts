@@ -28,6 +28,7 @@ export type ComponentType =
 interface itemProps {
   label: string;
   name: string;
+  [str: string]: any;
 }
 
 /**
