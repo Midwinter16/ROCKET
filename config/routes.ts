@@ -178,6 +178,21 @@ export default [
         path: "quickform",
         component: "./wheel/wheels/QForm",
       },
+      {
+        name: "可拖拽实验室",
+        path: "drag",
+        component: "./wheel/wheels/Drag",
+      },
+      {
+        name: "Antd-Pro",
+        path: "pro",
+        component: "./wheel/wheels/proComponent",
+      },
+      {
+        name: "Antd-G6",
+        path: "g6",
+        component: "./wheel/wheels/Gsix",
+      },
     ],
   },
 ];
