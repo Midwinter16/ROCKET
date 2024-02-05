@@ -10,8 +10,8 @@ const Performance = () => {
   delay(() => setLoading(false), 3000);
   return (
     <div>
-      <img src={icons.active.androidAcitive} alt="" />
-      {/* {!loading && <div>123123123</div>} */}
+      {/* <img src={icons.active.androidAcitive} alt="" />
+      {!loading && <div>123123123</div>}
       <div>
         {map(data, (value, key) => {
           return (
@@ -22,7 +22,8 @@ const Performance = () => {
             </div>
           );
         })}
-      </div>
+      </div> */}
+      <div style={{width:'100px',height:"100px",boxShadow:'0 0 0 10px rgb(0,0,0,0.5)'}}></div>
     </div>
   );
 };

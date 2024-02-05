@@ -1,0 +1,15 @@
+.test-classname {
+  color: red
+}
+
+.scroller {
+  /* firefox */
+  scrollbar-width: none;
+  /* IE 10+ */
+  -ms-overflow-style: none;
+}
+
+.scroller::-webkit-scrollbar {
+  /* Chrome Safari */
+  display: none;
+}

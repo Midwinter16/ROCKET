@@ -184,14 +184,19 @@ export default [
         component: "./wheel/wheels/Drag",
       },
       {
-        name: "Antd-Pro",
+        name: "AntD-Pro",
         path: "pro",
         component: "./wheel/wheels/proComponent",
       },
       {
-        name: "Antd-G6",
+        name: "AntV-G6",
         path: "g6",
         component: "./wheel/wheels/Gsix",
+      },
+      {
+        name: "AntV-X6",
+        path: "x6",
+        component: "./wheel/wheels/Xsix",
       },
     ],
   },

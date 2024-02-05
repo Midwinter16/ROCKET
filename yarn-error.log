@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /Users/caomintao/.yarn/bin/yarn.js add @sbp/com-intro
+  /usr/local/bin/node /Users/caomintao/.yarn/bin/yarn.js add @antd/g6
 
 PATH: 
   /Users/caomintao/.yarn/bin:/Users/caomintao/.config/yarn/global/node_modules/.bin:/usr/local/bin:/Users/caomintao/.yarn/bin:/Users/caomintao/.config/yarn/global/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin
@@ -14,7 +14,7 @@ Platform:
   darwin arm64
 
 Trace: 
-  Error: https://registry.npmjs.org/@sbp%2fcom-intro: Not found
+  Error: http://npm.fe.sensorsdata.cn/@antd%2fg6: no such package available
       at Request.params.callback [as _callback] (/Users/caomintao/.yarn/lib/cli.js:66145:18)
       at Request.self.callback (/Users/caomintao/.yarn/lib/cli.js:140890:22)
       at Request.emit (node:events:513:28)
@@ -44,6 +44,7 @@ npm manifest:
       "@ant-design/pro-components": "^2.6.35",
       "@antv/g2plot": "^2.4.31",
       "@emotion/css": "^11.11.2",
+      "@sbp/com-intro": "^0.1.5",
       "@umijs/max": "^4.0.75",
       "@unocss/cli": "^0.55.3",
       "ahooks": "^3.7.8",
@@ -2497,6 +2498,11 @@ Lockfile:
       "@types/estree" "^1.0.0"
       estree-walker "^2.0.2"
       picomatch "^2.3.1"
+  
+  "@sbp/com-intro@^0.1.5":
+    version "0.1.5"
+    resolved "http://npm.fe.sensorsdata.cn/@sbp/com-intro/-/com-intro-0.1.5.tgz#b88973af1e7df797bbbe7e08e14636d7e1127afe"
+    integrity sha512-3Dh217WBh6q1B+h+Xa1esQQyO6S48MdiXnA6/9LfrjenHcxFvCFduvCKMyJkmnrhPLf5HFQtaE0jlyUDJVtR+w==
   
   "@sinclair/typebox@^0.27.8":
     version "0.27.8"
