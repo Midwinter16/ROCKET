@@ -200,4 +200,16 @@ export default [
       },
     ],
   },
+  {
+    name: "组件库",
+    path: "/component",
+    component: "./component",
+    routes: [
+      {
+        name: "验证码模块",
+        path: "verification",
+        component: "./component/Verification",
+      },
+    ],
+  },
 ];
