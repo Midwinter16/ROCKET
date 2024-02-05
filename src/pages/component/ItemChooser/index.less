@@ -1,0 +1,34 @@
+.item-chooser {
+  width: 300px;
+  background-color: #fff;
+  border-radius: 5px;
+
+  .tips {
+    margin: 5px 8px;
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    max-height: 250px;
+    overflow-y: auto;
+
+
+    &>* {
+      margin: 2px 8px;
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 8px;
+    border-top: 1px solid #99979788;
+
+    .operator {
+      &>* {
+        margin-left: 8px;
+      }
+    }
+  }
+}

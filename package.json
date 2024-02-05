@@ -33,6 +33,7 @@
     "mockjs": "^1.1.0",
     "moment": "^2.29.4",
     "pinyin-pro": "^3.17.0",
+    "qrcode": "^1.5.3",
     "react-countup": "^6.4.2",
     "slate": "^0.94.1",
     "slate-react": "^0.98.3",
@@ -42,6 +43,7 @@
   "devDependencies": {
     "@types/lodash": "^4.14.197",
     "@types/mockjs": "^1.0.7",
+    "@types/qrcode": "^1.5.5",
     "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
     "eslint": "^8.51.0",

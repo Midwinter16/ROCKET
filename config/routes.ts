@@ -210,6 +210,21 @@ export default [
         path: "verification",
         component: "./component/Verification",
       },
+      {
+        name: "编辑式标题",
+        path: "edit_title",
+        component: "./component/EditTitle",
+      },
+      {
+        name: "选项选择器",
+        path: "item_chooser",
+        component: "./component/ItemChooser",
+      },
+      {
+        name: "二维码生成器",
+        path: "qrcode",
+        component: "./component/QRCode",
+      },
     ],
   },
 ];
