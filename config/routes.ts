@@ -178,6 +178,38 @@ export default [
         path: "quickform",
         component: "./wheel/wheels/QForm",
       },
+      {
+        name: "可拖拽实验室",
+        path: "drag",
+        component: "./wheel/wheels/Drag",
+      },
+      {
+        name: "AntD-Pro",
+        path: "pro",
+        component: "./wheel/wheels/proComponent",
+      },
+      {
+        name: "AntV-G6",
+        path: "g6",
+        component: "./wheel/wheels/Gsix",
+      },
+      {
+        name: "AntV-X6",
+        path: "x6",
+        component: "./wheel/wheels/Xsix",
+      },
+    ],
+  },
+  {
+    name: "组件库",
+    path: "/component",
+    component: "./component",
+    routes: [
+      {
+        name: "验证码模块",
+        path: "verification",
+        component: "./component/Verification",
+      },
     ],
   },
 ];
