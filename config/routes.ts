@@ -225,6 +225,11 @@ export default [
         path: "qrcode",
         component: "./component/QRCode",
       },
+      {
+        name: "分类列表",
+        path: "sorting_list",
+        component: "./component/SortingList",
+      },
     ],
   },
 ];
