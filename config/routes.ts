@@ -230,6 +230,11 @@ export default [
         path: "sorting_list",
         component: "./component/SortingList",
       },
+      {
+        name: "查询式表格",
+        path: "search_table",
+        component: "./component/SearchTable",
+      },
     ],
   },
 ];
