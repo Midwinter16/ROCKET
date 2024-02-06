@@ -1,6 +1,6 @@
 // 二维码生成器
 
-import { ExclamationCircleFilled } from "@ant-design/icons";
+import { ExclamationCircleFilled, LoadingOutlined } from "@ant-design/icons";
 import qr from "qrcode";
 import { useEffect, useState } from "react";
 
@@ -10,7 +10,9 @@ import styles from "./index.less";
 interface QRCodeProps {}
 
 const QRCode: React.FC<QRCodeProps> = () => {
-  const [status, setStatus] = useState<"NORMAL" | "EXPIRE">("EXPIRE");
+  const [status, setStatus] = useState<"NORMAL" | "EXPIRE" | "LOADING">(
+    "EXPIRE",
+  );
 
   useEffect(() => {
     qr.toCanvas(
@@ -36,9 +38,23 @@ const QRCode: React.FC<QRCodeProps> = () => {
               style={{ fontSize: "40px", color: "rgb(178,128,0)" }}
             />
             <span style={{ fontWeight: 500 }}>当前二维码已过期</span>
-            <Button size="small" onClick={() => setStatus("NORMAL")}>
+            <Button
+              size="small"
+              onClick={() => {
+                setStatus("LOADING");
+                setTimeout(() => {
+                  setStatus("NORMAL");
+                }, 2000);
+              }}
+            >
               刷新
             </Button>
+          </div>
+        )}
+        {status === "LOADING" && (
+          <div className={styles["loading"]}>
+            <LoadingOutlined style={{ fontSize: "40px" }} />
+            <span>加载中</span>
           </div>
         )}
       </div>
