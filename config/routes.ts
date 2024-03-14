@@ -235,6 +235,11 @@ export default [
         path: "search_table",
         component: "./component/SearchTable",
       },
+      {
+        name: "表格筛选自定义钩子",
+        path: "use_filter_search",
+        component: "./component/FilterSearchHook",
+      },
     ],
   },
 ];
